@@ -24,6 +24,24 @@ module Solpa
     config.active_record.raise_in_transactional_callbacks = true
 
 
+    # ignore the assets generation
     config.generators.assets = false
+
+    # i18n
+    config.before_configuration do
+      I18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
+      I18n.locale = :'pt-BR'
+      I18n.default_locale = :'pt-BR'
+      config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
+      config.i18n.locale = :'pt-BR'
+      
+      # bypasses rails bug with i18n in production\
+      I18n.reload!
+      config.i18n.reload!
+    end
+    
+    config.i18n.default_locale = :'pt-BR'
+    config.i18n.locale = :'pt-BR'
+
   end
 end
