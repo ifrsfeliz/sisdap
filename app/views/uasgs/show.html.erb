@@ -1,0 +1,14 @@
+<h1 class="title">Visualizar UASG</h1>
+
+<p>
+  <strong>Código:</strong>
+  <%= @uasg.codigo %>
+</p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @uasg.nome %>
+</p>
+
+<%= link_to 'Editar', edit_uasg_path(@uasg), class: 'btn btn-warning' %>
+<%= link_to 'Voltar', uasgs_path, class: 'btn btn-default' %>

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="title">Lista de Fornecedores</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>CNPJ</th>
+      <th>Razão social</th>
+      <th>Email</th>
+      <th>Telefone</th>
+      <th>Celular</th>
+      <th>Contato</th>
+      <th colspan="3">Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @suppliers.each do |supplier| %>
+      <tr>
+        <td><%= supplier.cnpj %></td>
+        <td><%= supplier.razao_social %></td>
+        <td><%= supplier.email %></td>
+        <td><%= supplier.telefone %></td>
+        <td><%= supplier.celular %></td>
+        <td><%= supplier.contato %></td>
+        <td><%= link_to 'Mostrar', supplier %></td>
+        <td><%= link_to 'Editar', edit_supplier_path(supplier) %></td>
+        <td><%= link_to 'Deletar', supplier, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
+
+<%= link_to 'Novo Fornecedor', new_supplier_path, class: 'btn btn-primary' %>

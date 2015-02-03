@@ -1,0 +1,39 @@
+<h1 class="title">Visualizando Fornecedor</h1>
+
+<p>
+  <strong>CNPJ:</strong>
+  <%= @supplier.cnpj %>
+</p>
+
+<p>
+  <strong>Razão Social:</strong>
+  <%= @supplier.razao_social %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @supplier.email %>
+</p>
+
+<p>
+  <strong>Telefone:</strong>
+  <%= @supplier.telefone %>
+</p>
+
+<p>
+  <strong>Celular:</strong>
+  <%= @supplier.celular %>
+</p>
+
+<p>
+  <strong>Contato:</strong>
+  <%= @supplier.contato %>
+</p>
+
+<p>
+  <strong>Observações:</strong>
+  <%= @supplier.observacoes %>
+</p>
+
+<%= link_to 'Editar', edit_supplier_path(@supplier), class: 'btn btn-warning' %>
+<%= link_to 'Voltar', suppliers_path, class: 'btn btn-default' %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="title">Lista de UASGs</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Nome</th>
+      <th colspan="3">Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @uasgs.each do |uasg| %>
+      <tr>
+        <td><%= uasg.codigo %></td>
+        <td><%= uasg.nome %></td>
+        <td><%= link_to 'Mostrar', uasg %></td>
+        <td><%= link_to 'Editar', edit_uasg_path(uasg) %></td>
+        <td><%= link_to 'Deletar', uasg, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova UASG', new_uasg_path, class: 'btn btn-primary' %>
