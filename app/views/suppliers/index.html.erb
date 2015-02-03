@@ -24,13 +24,21 @@
         <td><%= supplier.telefone %></td>
         <td><%= supplier.celular %></td>
         <td><%= supplier.contato %></td>
-        <td><%= link_to 'Mostrar', supplier %></td>
-        <td><%= link_to 'Editar', edit_supplier_path(supplier) %></td>
-        <td><%= link_to 'Deletar', supplier, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        <% if can? :read, supplier %>
+          <td><%= link_to 'Mostrar', supplier %></td>
+        <% end %>
+        <% if can? :update, supplier %>
+          <td><%= link_to 'Editar', edit_supplier_path(supplier) %></td>
+        <% end %>
+        <% if can? :delete, supplier %>
+          <td><%= link_to 'Deletar', supplier, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br />
 
-<%= link_to 'Novo Fornecedor', new_supplier_path, class: 'btn btn-primary' %>
+<% if can? :create, Supplier %>
+  <%= link_to 'Novo Fornecedor', new_supplier_path, class: 'btn btn-primary' %>
+<% end %>

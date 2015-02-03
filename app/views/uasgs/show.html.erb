@@ -10,5 +10,7 @@
   <%= @uasg.nome %>
 </p>
 
-<%= link_to 'Editar', edit_uasg_path(@uasg), class: 'btn btn-warning' %>
+<% if can? :update, @uasg %>
+  <%= link_to 'Editar', edit_uasg_path(@uasg), class: 'btn btn-warning' %>
+<% end %>
 <%= link_to 'Voltar', uasgs_path, class: 'btn btn-default' %>

@@ -1,4 +1,6 @@
 class UasgsController < ApplicationController
+  load_and_authorize_resource #cancan
+
   before_action :set_uasg, only: [:show, :edit, :update, :destroy]
 
   # GET /uasgs

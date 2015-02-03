@@ -16,9 +16,15 @@
       <tr>
         <td><%= uasg.codigo %></td>
         <td><%= uasg.nome %></td>
-        <td><%= link_to 'Mostrar', uasg %></td>
-        <td><%= link_to 'Editar', edit_uasg_path(uasg) %></td>
-        <td><%= link_to 'Deletar', uasg, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        <% if can? :read, uasg %>
+          <td><%= link_to 'Mostrar', uasg %></td>
+        <% end %>
+        <% if can? :update, uasg %>
+          <td><%= link_to 'Editar', edit_uasg_path(uasg) %></td>
+        <% end %>
+        <% if can? :delete, uasg %>
+          <td><%= link_to 'Deletar', uasg, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
