@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   
   # Devise Configuration
   devise_for :users
+  scope "/admin" do
+      resources :users
+  end
 
   # Example resource route with options:
   #   resources :products do

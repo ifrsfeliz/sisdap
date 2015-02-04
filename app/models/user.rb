@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
     !roles.find_by_name( role.to_s ).nil?
   end
 
+  def list_roles
+    roles.map(&:name).join(', ')
+  end
+
   private
   def set_default_role
     if self.roles.empty? 

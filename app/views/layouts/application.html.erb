@@ -93,10 +93,13 @@
                       <li><a href=""Minha Conta</a></li>
                       <li><%= link_to "Alterar Senha", :edit_user_registration %></li>
                       <li><%= link_to "Sair", :destroy_user_session, :method => :delete %></li>
-                      <li class="divider"></li>
-                      <li role="presentation" class="dropdown-header">Administração</li>
-                      <li><a href="">Usuários</a></li>
-                      <li><a href="">Novo Usuário</a></li>
+                      <% if current_user.role? :admin %>
+                        <li class="divider"></li>
+                        <li role="presentation" class="dropdown-header">Administração</li>
+                        <% if can? :manage, User %>
+                          <li><%= link_to "Usuários", :users %></li>
+                        <% end %>
+                      <% end %>
                     </ul>
                   </li>
                 <% else %>

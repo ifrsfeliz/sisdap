@@ -30,6 +30,9 @@ gem 'devise-i18n'
 # Authorization
 gem 'cancancan'
 
+# Let the Selects good to use
+gem 'chosen-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
