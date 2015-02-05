@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      user: Usuário
+      supplier_group: 'Grupo de Fornecedor'
+      supplier: 'Fornecedor'
+      uasg: 'UASG'
+    attributes:
+      user:
+        admin_authorization: 'Autorização do Admin'

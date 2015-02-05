@@ -1,0 +1,2 @@
+module SupplierGroupsHelper
+end

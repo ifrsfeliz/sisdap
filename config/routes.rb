@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :supplier_groups
+
   resources :uasgs
 
   get 'home/index'
