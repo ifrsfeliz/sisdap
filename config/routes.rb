@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :item_classifications
+
   resources :bids
 
   resources :supplier_groups

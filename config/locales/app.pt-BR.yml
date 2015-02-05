@@ -6,6 +6,7 @@ pt-BR:
       supplier: 'Fornecedor'
       uasg: 'UASG'
       bid: 'Pregão'
+      item_classification: 'Classificação de Item'
     attributes:
       user:
         admin_authorization: 'Autorização do Admin'
