@@ -1,0 +1,24 @@
+<h1 class="title">Visualizando Pregão</h1>
+
+<p>
+  <strong>Nome UASG:</strong>
+  <%= @bid.uasg.nome %>
+</p>
+
+<p>
+  <strong>Código UASG:</strong>
+  <%= @bid.uasg.codigo %>
+</p>
+
+<p>
+  <strong>Número Pregão:</strong>
+  <%= @bid.numero %>
+</p>
+
+<p>
+  <strong>Objeto do Pregão:</strong>
+  <%= @bid.objeto_do_pregao %>
+</p>
+
+<%= link_to 'Editar', edit_bid_path(@bid), class: 'btn btn-warning' %>
+<%= link_to 'Voltar', bids_path, class: 'btn btn-default' %>

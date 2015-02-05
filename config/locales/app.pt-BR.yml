@@ -5,6 +5,7 @@ pt-BR:
       supplier_group: 'Grupo de Fornecedor'
       supplier: 'Fornecedor'
       uasg: 'UASG'
+      bid: 'Pregão'
     attributes:
       user:
         admin_authorization: 'Autorização do Admin'

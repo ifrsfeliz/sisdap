@@ -1,0 +1,31 @@
+<h1 class="title">Lista de Pregões</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>UASG</th>
+      <th>Código UASG</th>
+      <th>Número do Pregão</th>
+      <th>Objeto do Pregão</th>
+      <th colspan="3">Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bids.each do |bid| %>
+      <tr>
+        <td><%= bid.uasg.nome %></td>
+        <td><%= bid.uasg.codigo %></td>
+        <td><%= bid.numero %></td>
+        <td><%= bid.objeto_do_pregao %></td>
+        <td><%= link_to 'Mostrar', bid %></td>
+        <td><%= link_to 'Editar', edit_bid_path(bid) %></td>
+        <td><%= link_to 'Destruir', bid, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Novo Pregão', new_bid_path, class: 'btn btn-primary' %>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :bids
+
   resources :supplier_groups
 
   resources :uasgs

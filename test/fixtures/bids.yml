@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uasg_id: 
+  numero: 1
+  objeto_do_pregao: MyString
+
+two:
+  uasg_id: 
+  numero: 1
+  objeto_do_pregao: MyString
