@@ -1,0 +1,8 @@
+<h3 class="title">Editando Item do Pregão <%= @bid.numero %> / <%= @bid.objeto_do_pregao %></h3>
+
+<%= render 'form' %>
+
+<hr />
+
+<%= link_to 'Mostrar', [@bid, @item], class: 'btn btn-info' %>
+<%= link_to 'Voltar', @bid, class: 'btn btn-default' %>

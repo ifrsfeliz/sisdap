@@ -1,0 +1,64 @@
+<h3 class="title">Visualizando Item do Pregão <%= @bid.numero %> / <%= @bid.objeto_do_pregao %></h3>
+
+<p>
+  <strong>Item:</strong>
+  <%= @item.item %>
+</p>
+
+<p>
+  <strong>Classificação:</strong>
+  <%= @item.item_classification.nome %>
+</p>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= @item.descricao %>
+</p>
+
+<p>
+  <strong>Fornecedor:</strong>
+  <%= link_to @item.supplier.razao_social, @item.supplier %>
+</p>
+
+<p>
+  <strong>Validade:</strong>
+  <%= I18n.l @item.validade %>
+</p>
+
+<p>
+  <strong>Unidade:</strong>
+  <%= @item.unidade %>
+</p>
+
+<p>
+  <strong>Quantidade:</strong>
+  <%= @item.quantidade %>
+</p>
+
+<p>
+  <strong>Valor Unitário:</strong>
+  <%= humanized_money_with_symbol @item.valor_unitario %>
+</p>
+
+<p>
+  <strong>Valor Total:</strong>
+  <%= humanized_money_with_symbol @item.valor_unitario * @item.quantidade %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @item.tipo %>
+</p>
+
+<p>
+  <strong>Observação:</strong>
+  <%= @item.observacao %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @item.ativo ? 'Ativo' : "Inativo" %>
+</p>
+
+<%= link_to 'Editar', edit_bid_item_path(@bid, @item), class: 'btn btn-warning'%>
+<%= link_to 'Voltar', bid_path(@bid), class: 'btn btn-default' %>

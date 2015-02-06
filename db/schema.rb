@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205143239) do
+ActiveRecord::Schema.define(version: 20150206124118) do
 
   create_table "bids", force: :cascade do |t|
     t.integer  "uasg_id"
@@ -28,6 +28,27 @@ ActiveRecord::Schema.define(version: 20150205143239) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "items", force: :cascade do |t|
+    t.integer  "item"
+    t.integer  "item_classification_id"
+    t.text     "descricao"
+    t.integer  "supplier_id"
+    t.date     "validade"
+    t.string   "unidade"
+    t.integer  "quantidade"
+    t.integer  "valor_unitario_cents"
+    t.string   "tipo"
+    t.text     "observacao"
+    t.boolean  "ativo"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "bid_id"
+  end
+
+  add_index "items", ["bid_id"], name: "index_items_on_bid_id"
+  add_index "items", ["item_classification_id"], name: "index_items_on_item_classification_id"
+  add_index "items", ["supplier_id"], name: "index_items_on_supplier_id"
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"

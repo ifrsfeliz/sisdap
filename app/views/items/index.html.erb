@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Item classification</th>
+      <th>Descricao</th>
+      <th>Supplier</th>
+      <th>Validade</th>
+      <th>Unidade</th>
+      <th>Quantidade</th>
+      <th>Valor unitario</th>
+      <th>Tipo</th>
+      <th>Observacao</th>
+      <th>Ativo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.item %></td>
+        <td><%= item.item_classification %></td>
+        <td><%= item.descricao %></td>
+        <td><%= item.supplier %></td>
+        <td><%= item.validade %></td>
+        <td><%= item.unidade %></td>
+        <td><%= item.quantidade %></td>
+        <td><%= item.valor_unitario %></td>
+        <td><%= item.tipo %></td>
+        <td><%= item.observacao %></td>
+        <td><%= item.ativo %></td>
+        <td><%= link_to 'Show', item %></td>
+        <td><%= link_to 'Edit', edit_item_path(item) %></td>
+        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Item', new_item_path %>

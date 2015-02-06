@@ -22,3 +22,51 @@
 
 <%= link_to 'Editar', edit_bid_path(@bid), class: 'btn btn-warning' %>
 <%= link_to 'Voltar', bids_path, class: 'btn btn-default' %>
+
+<h2 class="title">Items do Pregão</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Item do Pregão</th>
+      <th>Classificação</th>
+      <th>Descrição</th>
+      <th>Fornecedor</th>
+      <th>Validade</th>
+      <th>Unidade</th>
+      <th>Qtd</th>
+      <th>Valor Unitário</th>
+      <th>Valor Total</th>
+      <th>Tipo</th>
+      <th>Observação</th>
+      <th>Status</th>
+      <th colspan="3">Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bid.items.each do |item| %>
+      <tr>
+        <td><%= item.item %></td>
+        <td><%= item.item_classification.nome %></td>
+        <td><%= truncate item.descricao, length: 30 %></td>
+        <td><%= link_to item.supplier.razao_social, item.supplier %></td>
+        <td><%= I18n.l item.validade %></td>
+        <td><%= item.unidade %></td>
+        <td><%= item.quantidade %></td>
+        <td><%= humanized_money_with_symbol item.valor_unitario %></td>
+        <td><%= humanized_money_with_symbol item.valor_unitario * item.quantidade %></td>
+        <td><%= item.tipo %></td>
+        <td><%= truncate item.observacao, length: 30 %></td>
+        <td><%= item.ativo ? 'Ativo' : 'Inativo' %></td>
+        <td><%= link_to 'Mostrar', bid_item_path(@bid, item) %></td>
+        <td><%= link_to 'Editar', edit_bid_item_path(@bid, item) %></td>
+        <td><%= link_to 'Destruir', bid_item_path(@bid, item), method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Novo Item', new_bid_item_path(@bid), class: 'btn btn-primary' %>
