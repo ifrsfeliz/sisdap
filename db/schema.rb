@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206124118) do
+ActiveRecord::Schema.define(version: 20150323172605) do
 
   create_table "bids", force: :cascade do |t|
     t.integer  "uasg_id"
-    t.integer  "numero"
+    t.string   "numero"
     t.string   "objeto_do_pregao"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
@@ -49,6 +49,12 @@ ActiveRecord::Schema.define(version: 20150206124118) do
   add_index "items", ["bid_id"], name: "index_items_on_bid_id"
   add_index "items", ["item_classification_id"], name: "index_items_on_item_classification_id"
   add_index "items", ["supplier_id"], name: "index_items_on_supplier_id"
+
+  create_table "requests", force: :cascade do |t|
+    t.integer  "qtd_solicitada"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"

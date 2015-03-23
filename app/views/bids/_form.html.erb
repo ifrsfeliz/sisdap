@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :uasg, label_method: :nome, label: 'UASG', input_html: {class: 'chosen-select'} %>
+    <%= f.association :uasg, label_method: :full_name, label: 'UASG', input_html: {class: 'chosen-select'} %>
     <%= f.input :numero, label: 'Número do Pregão' %>
     <%= f.input :objeto_do_pregao, label: 'Objeto do Pregão' %>
   </div>

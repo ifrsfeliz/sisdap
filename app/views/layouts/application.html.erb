@@ -9,21 +9,16 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <nav id="top-nav">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12">
-            <ul>
-              <li><a href="#" class="active">SOLPA - Sistema Orçamentário, Licitatório e de Planejamento Administrativo</a></li>
-              <li><a href="#">Sistema Lorem</a></li>
-              <li><a href="#">Sistema Ipsum</a></li>
-              <li><a href="#">Sistema Dolor</a></li>
-              <li><a href="#">Sistema Sit Amet</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;"> 
+      <ul id="menu-barra-temp" style="list-style:none;">
+        <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
+          <a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal do Governo Brasileiro</a>
+        </li>
+        <li>
+          <a style="font-family:sans,sans-serif; text-decoration:none; color:white;" href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a>
+        </li>
+      </ul>
+    </div>
     <header>
       <div class="container-fluid">
         <div class="row">
@@ -53,42 +48,48 @@
             <div class="collapse navbar-collapse" id="navbar">
               <ul class="nav navbar-nav">
                 <li class=""><a href="<%= root_path %>">Início</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Orçamentos <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Ação</a></li>
-                    <li><a href="#">Outra Ação</a></li>
-                    <li><a href="#">Mais uma</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Link separado</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Outro separado</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Licitações <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><%= link_to "Fornecedores", suppliers_path %></li>
-                    <li><%= link_to "Grupos de Fornecedores", supplier_groups_path %></li>
-                    <li class="divider"></li>
-                    <li><%= link_to "UASGs", uasgs_path %></li>
-                    <li><%= link_to "Pregões", bids_path %></li>
-                    <li class="divider"></li>
-                    <li><%= link_to "Classificação de Itens", item_classifications_path %></li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <a href="/solpa/users" class="dropdown-toggle" data-toggle="dropdown">Planejamento <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Ação</a></li>
-                    <li><a href="#">Outra Ação</a></li>
-                    <li><a href="#">Mais uma</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Link separado</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Outro separado</a></li>
-                  </ul>
-                </li>
+                <% if current_user %>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Orçamentos <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">Ação</a></li>
+                      <li><a href="#">Outra Ação</a></li>
+                      <li><a href="#">Mais uma</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Link separado</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Outro separado</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Licitações <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li role="presentation" class="dropdown-header">Fornecedores</li>
+                      <li><%= link_to "Fornecedores", suppliers_path %></li>
+                      <li><%= link_to "Grupos de Fornecedores", supplier_groups_path %></li>
+                      <li class="divider"></li>
+                      <li><%= link_to "UASGs", uasgs_path %></li>
+                      <li><%= link_to "Pregões", bids_path %></li>
+                      <li class="divider"></li>
+                      <li><%= link_to "Classificação de Itens", item_classifications_path %></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown">
+                    <a href="/solpa/users" class="dropdown-toggle" data-toggle="dropdown">Planejamento <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">Ação</a></li>
+                      <li><a href="#">Outra Ação</a></li>
+                      <li><a href="#">Mais uma</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Link separado</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Outro separado</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <%= link_to 'Solicitações', requests_path %>
+                  </li>
+                <% end %>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <% if current_user %>
@@ -142,5 +143,6 @@
         </div>
       </div>
     </footer>
+    <script defer="defer" src="http://barra.brasil.gov.br/barra.js" type="text/javascript"></script>
   </body>
 </html>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'requests/solicitation'
+  resources :requests
 
   resources :uasgs
 
