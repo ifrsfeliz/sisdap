@@ -7,6 +7,10 @@ pt-BR:
       uasg: 'UASG'
       bid: 'Pregão'
       item_classification: 'Classificação de Item'
+      
+      exercise:
+        one: 'Ano de Exercício'
+        others: 'Anos de Exercício'
     attributes:
       user:
         admin_authorization: 'Autorização do Admin'

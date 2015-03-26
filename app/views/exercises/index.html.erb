@@ -1,0 +1,21 @@
+<h1 class="title">Anos de Exercício</h1>
+
+<table class="table table-striped">
+  <tr>
+      <th>Ano</th>
+      <th colspan="3">Ações</th>
+  </tr>
+
+  <%= content_tag_for(:tr, @exercises) do |exercise| %>
+          <td><%= exercise.nome %></td>
+        <td>
+      <%= link_to 'Mostrar', exercise %>
+      <%= link_to 'Editar', edit_exercise_path(exercise) %>
+      <%= link_to 'Destruir', exercise, method: :delete, data: { confirm: 'Você tem certeza?' } %>
+    </td>
+  <% end %>
+</table>
+
+<hr />
+
+<%= link_to 'Novo Ano', new_exercise_path, class: 'btn btn-success' %>

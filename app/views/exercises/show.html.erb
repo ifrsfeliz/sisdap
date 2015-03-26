@@ -1,0 +1,11 @@
+<h1 class="title">Exibindo Ano de Exercício</h1>
+
+<dl class="dl-horizontal">
+  <dt>Nome:</dt>
+  <dd><%= @exercise.nome %></dd>
+</dl>
+
+<hr />
+
+<%= link_to 'Editar', edit_exercise_path(@exercise), class: 'btn btn-warning' %>
+<%= link_to 'Voltar', exercises_path, class: 'btn btn-default' %>
