@@ -5,10 +5,17 @@ Rails.application.routes.draw do
   resources :uasgs
 
   resources :item_classifications
-  resources :items
+
+  get 'items/for_aquisition'
+  resources :items, only: :index
 
   resources :supplier_groups
   resources :suppliers
+
+  post 'carts/add_item_to_cart'
+  get 'carts/remove_item_from_cart'
+
+  resource :cart
 
   resources :bids do
     resources :items
@@ -34,7 +41,7 @@ Rails.application.routes.draw do
   # Devise Configuration
   devise_for :users
   scope "/admin" do
-      resources :users
+    resources :users
   end
 
   # Example resource route with options:

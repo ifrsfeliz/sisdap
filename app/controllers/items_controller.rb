@@ -7,6 +7,10 @@ class ItemsController < ApplicationController
     @items = Item.all
   end
 
+  def for_aquisition
+    @items = Item.all
+  end
+
   # GET /items/1
   # GET /items/1.json
   def show

@@ -30,6 +30,9 @@ gem 'devise-i18n'
 # Authorization
 gem 'cancancan'
 
+# ransack search
+gem 'ransack'
+
 # Let the Selects good to use
 gem 'chosen-rails'
 

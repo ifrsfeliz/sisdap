@@ -1,0 +1,43 @@
+<% if session['cart'].any? %>
+
+<h1 class="title"><i class="fa fa-shopping-cart"></i> Itens no Carrinho</h1>
+
+<table class="table table-striped">
+  <caption>Somente será dada baixa da lista do itens disponíveis para aquisição, quando o pedido for finalizado.</caption>
+  <thead>
+    <tr>
+      <th>Descrição</th>
+      <th>Fornecedor</th>
+      <th>Unidade</th>
+      <th>Qtd</th>
+      <th>Valor Unitário</th>
+      <th>Valor Total</th>
+      <th>Remoção</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <% qtd = session['cart'].select {|i| i['item_id'] == item.id}.first['quantidade'] %></td>
+      <tr>
+        <td><%= item.descricao %></td>
+        <td><%= item.supplier.razao_social %></td>
+        <td><%= item.unidade %></td>
+        <td><%= session['cart'].select {|i| i['item_id'] == item.id}.first['quantidade'] %></td>
+        <td><%= item.valor_unitario %></td>
+        <td><%= item.valor_unitario * qtd %>
+        <td><%= link_to "Remover do Carrinho", carts_remove_item_from_cart_path(:item_id => item.id), class: 'btn btn-danger' %></td>
+          
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr />
+
+<a href="#" class="btn btn-success">Finalizar Pedido</a>
+
+<% else %>
+  <h1 class="title"><i class="fa fa-shopping-cart"></i> Carrinho Vazio</h1>
+<% end %>
+

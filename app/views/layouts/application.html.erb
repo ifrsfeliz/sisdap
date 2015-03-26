@@ -50,18 +50,6 @@
                 <li class=""><a href="<%= root_path %>">Início</a></li>
                 <% if current_user %>
                   <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Orçamentos <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Ação</a></li>
-                      <li><a href="#">Outra Ação</a></li>
-                      <li><a href="#">Mais uma</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Link separado</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Outro separado</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Licitações <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                       <li role="presentation" class="dropdown-header">Fornecedores</li>
@@ -74,25 +62,22 @@
                       <li><%= link_to "Classificação de Itens", item_classifications_path %></li>
                     </ul>
                   </li>
-                  <li class="dropdown">
-                    <a href="/solpa/users" class="dropdown-toggle" data-toggle="dropdown">Planejamento <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Ação</a></li>
-                      <li><a href="#">Outra Ação</a></li>
-                      <li><a href="#">Mais uma</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Link separado</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Outro separado</a></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <%= link_to 'Solicitações', requests_path %>
-                  </li>
                 <% end %>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <% if current_user %>
+                  <li>
+                    <%= link_to 'Itens para Aquisição', items_for_aquisition_path %>
+                  </li>
+                  <li class="divider-vertical"></li>
+                  <li>
+                    <a href="<%= cart_path %>"><i class="fa fa-shopping-cart"></i> Carrinho de Compras &nbsp;&nbsp; <span class="badge" id="total-pedidos"><%= session['cart'].count %></span></a>
+                  </li>
+                  <li class="divider-vertical"></li>
+                  <li>
+                    <%= link_to 'Meus Pedidos', requests_path %>
+                  </li>
+                  <li class="divider-vertical"></li>
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">

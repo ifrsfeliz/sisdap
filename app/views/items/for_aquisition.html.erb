@@ -1,0 +1,68 @@
+<h1 class="title">Items Disponíveis para Aquisição</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Classificação</th>
+      <th>Descrição</th>
+      <th>Fornecedor</th>
+      <th>Validade</th>
+      <th>Unidade</th>
+      <th>Qtd</th>
+      <th>Valor Unitario</th>
+      <th>Tipo</th>
+      <th>Solicitação</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.item %></td>
+        <td><%= item.item_classification.nome %></td>
+        <td><%= item.descricao %></td>
+        <td><%= item.supplier.razao_social %></td>
+        <td><%= l item.validade %></td>
+        <td><%= item.unidade %></td>
+        <td><%= item.quantidade %></td>
+        <td><%= item.valor_unitario %></td>
+        <td><%= item.tipo %></td>
+        <td>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-<%= item.id %>">
+            Fazer Pedido
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="modal-<%= item.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Item: <%= item.item %> - Pregão: <%= item.bid.numero %></h4>
+                </div>
+                <div class="modal-body">
+                  <p><b>Descrição:</b> <%= item.descricao %></p>
+                  <hr />
+
+                  <%= form_tag(carts_add_item_to_cart_path, method: "post") do %>
+                    <div class="form-group">
+                      <%= hidden_field_tag(:item_id, item.id) %>
+                      <%= label_tag(:quantidade, "Quantidade:") %>
+                      <%= text_field_tag(:quantidade) %>
+                      <p class="form-control-static help-block">Quantidade Disponível: <%= item.quantidade %></p>
+                    </div>
+                      <%= submit_tag("Adicionar ao Carrinho") %>
+                  <% end %>
+                </div>
+                <div class="modal-footer">
+                  <a href="#" class="btn btn-default" data-dismiss="modal">Cancelar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,22 +1,18 @@
-<p id="notice"><%= notice %></p>
+<h1 class="title">Lista Geral de Itens</h1>
 
-<h1>Listing Items</h1>
-
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Item</th>
-      <th>Item classification</th>
-      <th>Descricao</th>
-      <th>Supplier</th>
+      <th>Classificação</th>
+      <th>Descrição</th>
+      <th>Fornecedor</th>
       <th>Validade</th>
       <th>Unidade</th>
-      <th>Quantidade</th>
-      <th>Valor unitario</th>
+      <th>Qtd</th>
+      <th>Valor Unitario</th>
       <th>Tipo</th>
-      <th>Observacao</th>
-      <th>Ativo</th>
-      <th colspan="3"></th>
+      <th>Ação</th>
     </tr>
   </thead>
 
@@ -24,24 +20,26 @@
     <% @items.each do |item| %>
       <tr>
         <td><%= item.item %></td>
-        <td><%= item.item_classification %></td>
+        <td><%= item.item_classification.nome %></td>
         <td><%= item.descricao %></td>
-        <td><%= item.supplier %></td>
-        <td><%= item.validade %></td>
+        <td><%= item.supplier.razao_social %></td>
+        <td><%= l item.validade %></td>
         <td><%= item.unidade %></td>
         <td><%= item.quantidade %></td>
         <td><%= item.valor_unitario %></td>
         <td><%= item.tipo %></td>
-        <td><%= item.observacao %></td>
-        <td><%= item.ativo %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        <% if can? :read, item %>
+          <%= link_to 'Mostrar', bid_item_path(item.bid, item) %>
+        <% end %>
+        <% if can? :update, item %>
+          <%= link_to 'Editar', edit_bid_item_path(item.bid, item) %>
+        <% end %>
+        <% if can? :delete, item %>
+          <%= link_to 'Deletar', bid_item_path(item.bid, item), method: :delete, data: { confirm: 'Você tem certeza?' } %>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Item', new_item_path %>

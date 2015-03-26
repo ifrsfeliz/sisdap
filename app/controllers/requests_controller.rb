@@ -21,10 +21,6 @@ class RequestsController < ApplicationController
   def edit
   end
 
-  # GET /solicitation
-  def solicitation
-  end
-
   # POST /requests
   # POST /requests.json
   def create
