@@ -1,0 +1,9 @@
+<%= simple_form_for(@action_plan) do |f| %>
+  <%= f.error_notification %>
+
+    <%= f.association :exercise, label_method: :nome, include_blank: false, label: "Ano de Exercício", collection: Exercise.order('nome DESC') %>
+    <%= f.input :setor, include_blank: false, collection: ["Administração", "Desenvolvimento Institucional", "Ensino", "Extensão", "Pesquisa" ] %>
+    <%= f.input :nome, autofocus: true %>
+
+    <%= f.button :submit, class: 'btn btn-primary'%>
+<% end %>

@@ -1,0 +1,29 @@
+<h1 class="title">Lista de Planos de Ação</h1>
+
+<table class="table table-striped">
+  <tr>
+      <th>Ano</th>
+      <th>Setor</th>
+      <th>Nome</th>
+      <th>Total Previsto</th>
+      <th>Total Executado</th>
+      <th colspan="3">Ações</th>
+  </tr>
+
+  <%= content_tag_for(:tr, @action_plans) do |action_plan| %>
+    <td><%= action_plan.exercise.nome %></td>
+    <td><%= action_plan.setor %></td>
+    <td><%= action_plan.nome %></td>
+    <td></td>
+    <td></td>
+    <td>
+      <%= link_to 'Mostrar', action_plan %>
+      <%= link_to 'Editar', edit_action_plan_path(action_plan) %>
+      <%= link_to 'Destruir', action_plan, method: :delete, data: { confirm: 'Você tem certeza?' } %>
+    </td>
+  <% end %>
+</table>
+
+<hr />
+
+<%= link_to 'Novo Plano de Ação', new_action_plan_path, class: 'btn btn-success' %>

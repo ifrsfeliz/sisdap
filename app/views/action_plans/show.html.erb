@@ -1,0 +1,15 @@
+<h1 class="title">Exibindo Plano de Ação</h1>
+
+<dl class="dl-horizontal">
+  <dt>Exercise:</dt>
+  <dd><%= @action_plan.exercise.nome %></dd>
+  <dt>Setor:</dt>
+  <dd><%= @action_plan.setor %></dd>
+  <dt>Nome:</dt>
+  <dd><%= @action_plan.nome %></dd>
+</dl>
+
+<hr />
+
+<%= link_to 'Editar', edit_action_plan_path(@action_plan), class: 'btn btn-warning' %>
+<%= link_to 'Voltar', action_plans_path, class: 'btn btn-default' %>

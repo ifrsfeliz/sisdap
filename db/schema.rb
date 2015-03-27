@@ -11,115 +11,126 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326213705) do
+ActiveRecord::Schema.define(version: 20150327154854) do
 
-  create_table "bids", force: :cascade do |t|
-    t.integer  "uasg_id"
-    t.string   "numero"
-    t.string   "objeto_do_pregao"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+  create_table "action_plans", force: :cascade do |t|
+    t.integer  "exercise_id", limit: 4
+    t.string   "nome",        limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "setor",       limit: 255
   end
 
-  add_index "bids", ["uasg_id"], name: "index_bids_on_uasg_id"
+  add_index "action_plans", ["exercise_id"], name: "index_action_plans_on_exercise_id", using: :btree
+
+  create_table "bids", force: :cascade do |t|
+    t.integer  "uasg_id",          limit: 4
+    t.string   "numero",           limit: 255
+    t.string   "objeto_do_pregao", limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "bids", ["uasg_id"], name: "index_bids_on_uasg_id", using: :btree
 
   create_table "exercises", force: :cascade do |t|
-    t.string   "nome"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "nome",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "item_classifications", force: :cascade do |t|
-    t.string   "nome"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "nome",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer  "item"
-    t.integer  "item_classification_id"
-    t.text     "descricao"
-    t.integer  "supplier_id"
+    t.integer  "item",                   limit: 4
+    t.integer  "item_classification_id", limit: 4
+    t.text     "descricao",              limit: 65535
+    t.integer  "supplier_id",            limit: 4
     t.date     "validade"
-    t.string   "unidade"
-    t.integer  "quantidade"
-    t.integer  "valor_unitario_cents"
-    t.string   "tipo"
-    t.text     "observacao"
-    t.boolean  "ativo"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "bid_id"
+    t.string   "unidade",                limit: 255
+    t.integer  "quantidade",             limit: 4
+    t.integer  "valor_unitario_cents",   limit: 4
+    t.string   "tipo",                   limit: 255
+    t.text     "observacao",             limit: 65535
+    t.boolean  "ativo",                  limit: 1
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "bid_id",                 limit: 4
   end
 
-  add_index "items", ["bid_id"], name: "index_items_on_bid_id"
-  add_index "items", ["item_classification_id"], name: "index_items_on_item_classification_id"
-  add_index "items", ["supplier_id"], name: "index_items_on_supplier_id"
+  add_index "items", ["bid_id"], name: "index_items_on_bid_id", using: :btree
+  add_index "items", ["item_classification_id"], name: "index_items_on_item_classification_id", using: :btree
+  add_index "items", ["supplier_id"], name: "index_items_on_supplier_id", using: :btree
 
   create_table "requests", force: :cascade do |t|
-    t.integer  "qtd_solicitada"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "qtd_solicitada", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "roles", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "roles_users", id: false, force: :cascade do |t|
-    t.integer "role_id"
-    t.integer "user_id"
+    t.integer "role_id", limit: 4
+    t.integer "user_id", limit: 4
   end
 
   create_table "supplier_groups", force: :cascade do |t|
-    t.string   "nome"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "nome",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "supplier_groups_suppliers", force: :cascade do |t|
-    t.integer "supplier_group_id"
-    t.integer "supplier_id"
+    t.integer "supplier_group_id", limit: 4
+    t.integer "supplier_id",       limit: 4
   end
 
   create_table "suppliers", force: :cascade do |t|
-    t.string   "cnpj"
-    t.string   "razao_social"
-    t.string   "email"
-    t.string   "telefone"
-    t.string   "celular"
-    t.string   "contato"
-    t.text     "observacoes"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "cnpj",         limit: 255
+    t.string   "razao_social", limit: 255
+    t.string   "email",        limit: 255
+    t.string   "telefone",     limit: 255
+    t.string   "celular",      limit: 255
+    t.string   "contato",      limit: 255
+    t.text     "observacoes",  limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "uasgs", force: :cascade do |t|
-    t.string   "codigo"
-    t.string   "nome"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "codigo",     limit: 255
+    t.string   "nome",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "admin_authorization"
+    t.boolean  "admin_authorization",    limit: 1
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "action_plans", "exercises"
 end

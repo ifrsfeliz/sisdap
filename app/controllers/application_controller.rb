@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :authenticate_user!, :check_admin_authorization
+  before_filter :authenticate_user!, :check_admin_authorization, :initialize_cart_session
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
@@ -15,5 +15,9 @@ class ApplicationController < ActionController::Base
       reset_session
       redirect_to new_user_session_path, alert: "O Administrador do sistema precisa aprovar seu cadastro para que você possa ter acesso."
     end
+  end
+
+  def initialize_cart_session
+    session['cart'] ||= []
   end
 end
