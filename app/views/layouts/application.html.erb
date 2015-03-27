@@ -69,6 +69,14 @@
                       <li><%= link_to "Classificação de Itens", item_classifications_path %></li>
                     </ul>
                   </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Financeiro <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li role="presentation" class="dropdown-header">Empenhos</li>
+                      <li class="divider"></li>
+                      <li><%= link_to "Ações", accounting_actions_path %></li>
+                    </ul>
+                  </li>
                 <% end %>
               </ul>
               <ul class="nav navbar-nav navbar-right">

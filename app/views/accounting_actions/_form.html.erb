@@ -1,0 +1,9 @@
+<%= simple_form_for(@accounting_action) do |f| %>
+  <%= f.error_notification %>
+
+    <%= f.input :codigo, label: 'Código' %>
+    <%= f.input :descricao, label: 'Descrição' %>
+    <%= f.association :exercise, label: 'Ano de Exercício', label_method: :nome, collection: Exercise.order('nome DESC'), include_blank: false %>
+
+    <%= f.button :submit, class: 'btn btn-primary'%>
+<% end %>

@@ -1,0 +1,43 @@
+<h1 class="title">Lista de Ações</h1>
+
+
+<table class="table table-striped">
+  <tr>
+      <th><%= sort_link(@q, :codigo, 'Código') %></th>
+      <th><%= sort_link(@q, :descricao, 'Descrição', default_order: :asc) %></th>
+      <th><%= sort_link(@q, 'exercise_nome', 'Ano') %></th>
+      <th colspan="3">Ações</th>
+  </tr>
+  <tr>
+    <%= search_form_for @q do |f| %>
+    <td>
+      <%= f.search_field :codigo_cont, class: 'form-control' %>
+    </td>
+    <td>
+      <%= f.search_field :descricao_cont, class: 'form-control' %>
+    </td>
+    <td>
+      <%= f.search_field :exercise_nome_cont, class: 'form-control' %>
+    </td>
+    <td>
+      <%= f.submit 'Filtrar', class: 'btn btn-primary' %>
+      <%= link_to "Limpar Filtro", accounting_actions_path, class: 'btn btn-warning' %>
+    </td>
+  <% end %>
+  </tr>
+
+  <%= content_tag_for(:tr, @accounting_actions) do |accounting_action| %>
+          <td><%= accounting_action.codigo %></td>
+          <td><%= accounting_action.descricao %></td>
+          <td><%= accounting_action.exercise.nome %></td>
+        <td>
+      <%= link_to 'Mostrar', accounting_action %>
+      <%= link_to 'Editar', edit_accounting_action_path(accounting_action) %>
+      <%= link_to 'Destruir', accounting_action, method: :delete, data: { confirm: 'Você tem certeza?' } %>
+    </td>
+  <% end %>
+</table>
+
+<hr />
+
+<%= link_to 'Nova Ação', new_accounting_action_path, class: 'btn btn-success' %>

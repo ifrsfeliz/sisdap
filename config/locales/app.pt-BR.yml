@@ -14,7 +14,9 @@ pt-BR:
       action_plan:
         one: 'Plano de Ação'
         others: 'Plano de Ações'
-
+      accounting_action:
+        one: 'Ação'
+        others: 'Ações'
     attributes:
       user:
         admin_authorization: 'Autorização do Admin'

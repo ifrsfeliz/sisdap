@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :accounting_actions
+
   resources :action_plans
 
   resources :exercises

@@ -1,0 +1,15 @@
+<h1 class="title">Exibindo Ação</h1>
+
+<dl class="dl-horizontal">
+  <dt>Código:</dt>
+  <dd><%= @accounting_action.codigo %></dd>
+  <dt>Descrição:</dt>
+  <dd><%= @accounting_action.descricao %></dd>
+  <dt>Ano de Exercício:</dt>
+  <dd><%= @accounting_action.exercise.nome %></dd>
+</dl>
+
+<hr />
+
+<%= link_to 'Editar', edit_accounting_action_path(@accounting_action), class: 'btn btn-warning' %>
+<%= link_to 'Voltar', accounting_actions_path, class: 'btn btn-default' %>
