@@ -21,7 +21,7 @@
     </td>
     <td>
       <%= f.submit 'Filtrar', class: 'btn btn-primary' %>
-      <%= link_to "Limpar Filtro", accounting_actions_path, class: 'btn btn-warning' %>
+      <%= link_to "Limpar", accounting_actions_path, class: 'btn btn-warning' %>
     </td>
   <% end %>
   </tr>
@@ -31,9 +31,9 @@
           <td><%= accounting_action.descricao %></td>
           <td><%= accounting_action.exercise.nome %></td>
         <td>
-      <%= link_to 'Mostrar', accounting_action %>
-      <%= link_to 'Editar', edit_accounting_action_path(accounting_action) %>
-      <%= link_to 'Destruir', accounting_action, method: :delete, data: { confirm: 'Você tem certeza?' } %>
+      <%= link_to 'Mostrar', accounting_action, class: 'btn btn-xs btn-info' %>
+      <%= link_to 'Editar', edit_accounting_action_path(accounting_action), class: 'btn btn-xs btn-warning' %>
+      <%= link_to 'Destruir', accounting_action, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-xs btn-danger' %>
     </td>
   <% end %>
 </table>
