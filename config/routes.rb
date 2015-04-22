@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   resources :exercises
 
-  resources :requests
+  resources :orders
+
+  resources :requests do
+    get 'status'
+  end
 
   resources :uasgs
 
@@ -19,7 +23,7 @@ Rails.application.routes.draw do
 
   post 'carts/add_item_to_cart'
   get 'carts/remove_item_from_cart'
-
+  get 'carts/finalize'
   resource :cart
 
   resources :bids do

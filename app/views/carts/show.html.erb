@@ -35,7 +35,8 @@
 
 <hr />
 
-<a href="#" class="btn btn-success">Finalizar Pedido</a>
+
+<%= link_to 'Finalizar Pedido', carts_finalize_path, class: 'btn btn-success' %>
 
 <% else %>
   <h1 class="title"><i class="fa fa-shopping-cart"></i> Carrinho Vazio</h1>

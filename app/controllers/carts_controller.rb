@@ -46,7 +46,7 @@ class CartsController < ApplicationController
       @status = :alert
     end
 
-    redirect_to items_path, flash: { "#{@status}" => @message } 
+    redirect_to items_for_aquisition_path, flash: { "#{@status}" => @message } 
   end
 
   def remove_item_from_cart
@@ -62,6 +62,39 @@ class CartsController < ApplicationController
     end
 
     redirect_to cart_path, flash: { "#{@status}" => @message } 
+  end
+
+  def finalize
+    if session['cart'].any?
+      order = Order.new(user: current_user)
+
+      order.transaction do
+        session['cart'].each do |c|
+          item = Item.find(c['item_id'])
+
+          if item.qtd_disponivel >= c['quantidade']
+            r = Request.new(item: item, qtd_solicitada: c['quantidade'], status: Request::AGUARDANDO_ENVIO)
+            order.requests << r
+          else
+            redirect_to cart_path, alert: "O item #{item.descricao.truncate(50)} não tem a quantidade solicitada, por favor remova do carrinho e adicione novamente com a quantidade disponível." and return
+          end
+        end
+
+       order.save
+
+      end
+
+      if order.persisted?
+        session['cart'] = []
+        redirect_to requests_path, notice: 'Pedido efetuado!' and return
+      else
+        redirect_to requests_path, notice: 'Ocorreu um erro ao efetuar o pedido' and return
+      end
+
+    else
+      redirect_to cart_path, alert: 'Não há itens no carrinho para que possa ser finalizado o pedido' and return
+
+    end
   end
 
 end

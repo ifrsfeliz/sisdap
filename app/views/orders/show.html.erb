@@ -1,0 +1,37 @@
+<h1 class="title">Exibindo Requisição</h1>
+
+<dl class="dl-horizontal">
+  <dt>ID:</dt>
+  <dd><%= @order.id %></dd>
+  <dt>Solicitante:</dt>
+  <dd><%= @order.user.email %></dd>
+  <dt>Qtd de Items Solicitados:</dt>
+  <dd><%= @order.requests.count %></dd>
+</dl>
+
+<hr />
+
+<h4 class="title">Itens Requisitados</h4>
+<table class="table table-striped">
+  <tr>
+    <th>Item</th>
+    <th>Descrição</th>
+    <th>Pregão</th>
+    <th>Qtd Sol.</th>
+    <th>Status</th>
+    <th>Ações</th>
+  <tr>
+  <% @order.requests.each do |r| %>
+    <tr>
+      <td><%= r.item.item %></td>
+      <td><%= link_to r.item.descricao.truncate(70), bid_item_path(r.item.bid, r.item)  %></td>
+      <td><%= r.item.bid.numero %></td>
+      <td><%= r.qtd_solicitada %></td>
+      <td><%= r.status %></td>
+      <td><%= link_to "Status Detalhado", request_status_path(r), class: 'btn btn-xs btn-primary' %>
+    </tr>
+  <% end %>
+</table>
+
+
+<%= link_to 'Voltar', requests_path, class: 'btn btn-default' %>

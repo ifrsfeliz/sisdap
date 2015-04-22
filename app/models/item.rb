@@ -4,6 +4,8 @@ class Item < ActiveRecord::Base
   belongs_to :item_classification
   belongs_to :supplier
   belongs_to :bid
+  has_many :requests
+  has_many :orders, through: :requests
 
   # Filters
   #
