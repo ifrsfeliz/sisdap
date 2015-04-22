@@ -28,7 +28,7 @@ class CartsController < ApplicationController
           quantity = 1
         end
 
-        if quantity > 0
+        if quantity > 0 && @item.qtd_disponivel >= quantity
           session['cart'] << {'item_id' => @item.id, 'quantidade' =>  quantity}
 
           @message = "Item #{ @item.item } do pregão #{@item.bid.numero} foi adicionado ao carrinho."
@@ -74,9 +74,14 @@ class CartsController < ApplicationController
 
           if item.qtd_disponivel >= c['quantidade']
             r = Request.new(item: item, qtd_solicitada: c['quantidade'], status: Request::AGUARDANDO_ENVIO)
+
+            item.qtd_disponivel -=  c['quantidade']
+            item.save
+
             order.requests << r
           else
-            redirect_to cart_path, alert: "O item #{item.descricao.truncate(50)} não tem a quantidade solicitada, por favor remova do carrinho e adicione novamente com a quantidade disponível." and return
+            order.errors.add(:item, "#{item.descricao.truncate(50)} não tem a quantidade solicitada, por favor remova do carrinho e adicione novamente com a quantidade disponível.")
+            raise ActiveRecord::Rollback
           end
         end
 
@@ -88,7 +93,7 @@ class CartsController < ApplicationController
         session['cart'] = []
         redirect_to requests_path, notice: 'Pedido efetuado!' and return
       else
-        redirect_to requests_path, notice: 'Ocorreu um erro ao efetuar o pedido' and return
+        redirect_to requests_path, alert: "Ocorreu um erro ao efetuar o pedido: #{order.errors.full_messages.to_sentence}" and return
       end
 
     else

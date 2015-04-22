@@ -19,6 +19,7 @@
     <th>Pregão</th>
     <th>Qtd Sol.</th>
     <th>Status</th>
+    <th>Data do Pedido</th>
     <th>Ações</th>
   <tr>
   <% @order.requests.each do |r| %>
@@ -27,7 +28,8 @@
       <td><%= link_to r.item.descricao.truncate(70), bid_item_path(r.item.bid, r.item)  %></td>
       <td><%= r.item.bid.numero %></td>
       <td><%= r.qtd_solicitada %></td>
-      <td><%= r.status %></td>
+      <td><%= r.status_detalhado %></td>
+      <td><%= l(r.created_at, format: :short) %></td>
       <td><%= link_to "Status Detalhado", request_status_path(r), class: 'btn btn-xs btn-primary' %>
     </tr>
   <% end %>

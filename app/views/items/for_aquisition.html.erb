@@ -9,7 +9,8 @@
       <th>Fornecedor</th>
       <th>Validade</th>
       <th>Unidade</th>
-      <th>Qtd</th>
+      <th>Qtd Licitada</th>
+      <th>Qtd Disp.</th>
       <th>Valor Unitario</th>
       <th>Tipo</th>
       <th>Solicitação</th>
@@ -26,6 +27,7 @@
         <td><%= l item.validade %></td>
         <td><%= item.unidade %></td>
         <td><%= item.quantidade %></td>
+        <td><%= item.qtd_disponivel %></td>
         <td><%= item.valor_unitario %></td>
         <td><%= item.tipo %></td>
         <td>
@@ -48,9 +50,9 @@
                   <%= form_tag(carts_add_item_to_cart_path, method: "post") do %>
                     <div class="form-group">
                       <%= hidden_field_tag(:item_id, item.id) %>
-                      <%= label_tag(:quantidade, "Quantidade:") %>
+                      <%= label_tag(:quuantidade, "Quantidade Disponível:") %>
                       <%= text_field_tag(:quantidade) %>
-                      <p class="form-control-static help-block">Quantidade Disponível: <%= item.quantidade %></p>
+                      <p class="form-control-static help-block">Quantidade Disponível: <%= item.qtd_disponivel %></p>
                     </div>
                       <%= submit_tag("Adicionar ao Carrinho") %>
                   <% end %>

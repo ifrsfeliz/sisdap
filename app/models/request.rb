@@ -37,4 +37,24 @@ class Request < ActiveRecord::Base
   belongs_to :order
   belongs_to :item
 
+  STATUS = { 1  => 'Aguardando envio do formuário para análise orçamentária',
+             2  => 'Enviado para análise orçamentária',
+             3  => 'Pedido negado',
+             4  => 'Pedido aceito',
+             5  => 'Enviado ao setor de compras',
+             6  => 'Enviado para empenho',
+             7  => 'Empenho efetuado',
+             8  => 'Encaminhado para o almoxarifado dar continuidade no processo',
+             9  => 'Empenho enviado ao fornecedor',
+             10 => 'Item recebido provisoriamente',
+             11 => 'Aguardando retirada do item no almoxarifado',
+             12 => 'Item entregue ao solicitante',
+             13 => 'Requisição finalizada'
+           }
+
+  def status_detalhado
+    STATUS[self.status]
+  end
+
+
 end
