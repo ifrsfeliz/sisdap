@@ -31,6 +31,9 @@ gem 'devise-i18n'
 # Authorization
 gem 'cancancan'
 
+# Annotate Model
+gem 'annotate'
+
 # ransack search
 gem 'ransack'
 
