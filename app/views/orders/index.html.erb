@@ -10,7 +10,7 @@
 
   <%= content_tag_for(:tr, @orders) do |order| %>
     <td><%= order.id %></td>
-    <td><%= order.user.email %></td>
+    <td><%= order.user.full_name %></td>
     <td><%= order.requests.count %></td>
     <td>
       <%= link_to 'Mostrar', order, class: 'btn btn-default btn-xs' %>
