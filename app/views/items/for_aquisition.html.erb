@@ -50,9 +50,15 @@
                   <%= form_tag(carts_add_item_to_cart_path, method: "post") do %>
                     <div class="form-group">
                       <%= hidden_field_tag(:item_id, item.id) %>
-                      <%= label_tag(:quuantidade, "Quantidade Disponível:") %>
-                      <%= text_field_tag(:quantidade) %>
                       <p class="form-control-static help-block">Quantidade Disponível: <%= item.qtd_disponivel %></p>
+                      <%= label_tag(:quuantidade, 'Quantidade:') %>
+                      <%= text_field_tag(:quantidade) %>
+                      <br />
+                      <br />
+                      <%= label_tag(:justificativa, 'Justificativa:') %>
+                      <p class="form-control-static help-block small">Apresentar a memória de cálculo para definição da quantidade, razão para aquisição, benefícios que serão alcançados aos alunos/setor, frequência e local de utilização: setor/laboratório</p>
+                      <br />
+                      <%= text_area_tag(:justificativa) %>
                     </div>
                       <%= submit_tag("Adicionar ao Carrinho") %>
                   <% end %>

@@ -61,6 +61,18 @@ class OrdersController < ApplicationController
     end
   end
 
+  def solicitacao
+    @order = Order.find(params[:order_id])
+    respond_to do |format|
+      format.html {render :solicitacao}
+      format.pdf do
+        render pdf: "solicitacao",
+          template: 'orders/solicitacao.html.erb',
+          layout: 'pdf'
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order

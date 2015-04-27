@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   resources :exercises
 
-  resources :orders
+  resources :orders do 
+    get 'solicitacao'
+  end
 
   resources :requests do
     get 'status'

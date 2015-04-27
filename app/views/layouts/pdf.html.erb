@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Solicitação de Compras de Materiais e/ou Serviços Licitados</title>
+  <%= wicked_pdf_stylesheet_link_tag 'application' %>
+  <style>
+    body {
+      background: #FFF !important;
+    }
+
+    #pdf hr {
+      border-top: 1px solid #eee;
+    }
+
+    #pdf #header {
+      margin-bottom: 20px;
+    }
+
+    #pdf #header h1 {
+      font-size: 15px !important;
+      font-height: 15px;
+      font-weight: bold;
+      margin: 5px 0 0 0;
+      text-align: center !important;
+    }
+
+    #pdf #header h2 {
+      font-size: 13px !important;
+      font-height: 13px;
+      font-weight: bold;
+      margin: 5px 0 0 0;
+      text-align: center !important;
+    }
+
+    #pdf table td strong {
+      width: 100px;
+      display: block;
+      float: left;
+      text-align: right;
+      margin-right: 20px;
+    }
+
+    #pdf dl dt {
+      width: 10%;
+      float: left;
+    }
+
+    #pdf dl dd {
+      width: 90%;
+      float: right;
+    }
+  </style>
+</head>
+<body id="pdf">
+  <div class="container">
+    <%= yield %>
+  </div>
+</body>
+</html>

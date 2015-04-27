@@ -1,13 +1,22 @@
 <h1 class="title">Exibindo Requisição</h1>
 
-<dl class="dl-horizontal">
-  <dt>ID:</dt>
-  <dd><%= @order.id %></dd>
-  <dt>Solicitante:</dt>
-  <dd><%= @order.user.email %></dd>
-  <dt>Qtd de Items Solicitados:</dt>
-  <dd><%= @order.requests.count %></dd>
-</dl>
+<div class="row">
+  <div class="col-md-6">
+    <dl class="dl-horizontal">
+      <dt>ID:</dt>
+      <dd><%= @order.id %></dd>
+      <dt>Solicitante:</dt>
+      <dd><%= @order.user.email %></dd>
+      <dt>Qtd de Items Solicitados:</dt>
+      <dd><%= @order.requests.count %></dd>
+    </dl>
+  </div>
+  
+  <div class="col-md-6">
+    <h4 class="important">IMPORTANTE! - Imprimir solicitação para ser colhida as assinaturas e entregue ao setor de Compras</h4>
+    <%= link_to 'Gerar Solicitação', order_solicitacao_path(@order, format: :pdf), class: 'btn btn-primary'%>
+  </div>
+</div>
 
 <hr />
 
@@ -16,6 +25,7 @@
   <tr>
     <th>Item</th>
     <th>Descrição</th>
+    <th>Justificativa de Compra</th>
     <th>Pregão</th>
     <th>Qtd Sol.</th>
     <th>Status</th>
@@ -26,6 +36,7 @@
     <tr>
       <td><%= r.item.item %></td>
       <td><%= link_to r.item.descricao.truncate(70), bid_item_path(r.item.bid, r.item)  %></td>
+      <td><%= r.justificativa %></td>
       <td><%= r.item.bid.numero %></td>
       <td><%= r.qtd_solicitada %></td>
       <td><%= r.status_detalhado %></td>

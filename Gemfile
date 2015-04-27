@@ -34,6 +34,9 @@ gem 'cancancan'
 # Annotate Model
 gem 'annotate'
 
+# Gem to generate PDFs files
+gem 'wicked_pdf'
+
 # ransack search
 gem 'ransack'
 

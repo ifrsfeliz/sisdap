@@ -1,6 +1,5 @@
 class CartsController < ApplicationController
 
-
   def show
     if session['cart'].any?
       ids = session['cart'].map {|i| i['item_id']}
@@ -10,9 +9,6 @@ class CartsController < ApplicationController
       @items = []
     end
   end
-
-
-
 
   # Método usados para adicionar/remover items ao carrinho
   # Methods used to add/remove items from cart
@@ -29,7 +25,7 @@ class CartsController < ApplicationController
         end
 
         if quantity > 0 && @item.qtd_disponivel >= quantity
-          session['cart'] << {'item_id' => @item.id, 'quantidade' =>  quantity}
+          session['cart'] << {'item_id' => @item.id, 'quantidade' =>  quantity, 'justificativa' => params[:justificativa]}
 
           @message = "Item #{ @item.item } do pregão #{@item.bid.numero} foi adicionado ao carrinho."
           @status = :notice
@@ -73,7 +69,7 @@ class CartsController < ApplicationController
           item = Item.find(c['item_id'])
 
           if item.qtd_disponivel >= c['quantidade']
-            r = Request.new(item: item, qtd_solicitada: c['quantidade'], status: Request::AGUARDANDO_ENVIO)
+            r = Request.new(item: item, qtd_solicitada: c['quantidade'], status: Request::AGUARDANDO_ENVIO, justificativa: c['justificativa'])
 
             item.qtd_disponivel -=  c['quantidade']
             item.save

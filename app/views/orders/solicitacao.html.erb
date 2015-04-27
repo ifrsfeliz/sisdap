@@ -1,0 +1,80 @@
+<div id="header">
+  <div class="row">
+    <div class="col-xs-3">
+      <%= wicked_pdf_image_tag 'logo-ifrs-feliz-pequeno.png' %>
+    </div>
+    <div class="col-xs-9">
+      <h1>SOLICITAÇÃO DE COMPRA DE MATERIAIS E/OU SERVIÇOS LICITADOS</h1>
+      <h2>Nº SOLICITAÇÃO: <%= @order.id %></h2>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h4 class="title">1. Dados do Requisitante</h4>
+    <table class="table table-condensed">
+      <tr>
+        <td><strong>Departamento: </strong>Alterar</td>
+        <td><strong>Data:</strong> <%= l @order.created_at, format: :short %></td>
+      </tr>
+      <tr>
+        <td><strong>Requisitante: </strong><%= @order.user.email %></td>
+        <td><strong>Fone:</strong> <%= "(51) 9999-xxxx" %>
+      </tr>
+      <tr>
+        <td><strong>E-mail: </strong><%= @order.user.email %></td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+
+    <h4 class="title">2. Dados da Licitação</h4>
+    <table class="table table-condensed">
+      <tr>
+        <td><strong>UASG: </strong><%= @order.requests.first.item.bid.uasg.codigo %></td>
+        <td><strong>PREGÃO:</strong> <%= @order.requests.first.item.bid.numero %></td>
+      </tr>
+    </table>
+
+    <h4 class="title">3. Itens da Licitação</h4>
+    <% total = 0 %>
+    <table class="table table-condensed table-bordered">
+      <tr>
+        <th>Item</th>
+        <th>Validade</th>
+        <th>Tipo</th>
+        <th>Descrição</th>
+        <th>Qtd</th>
+        <th>Un.</th>
+        <th>R$ Un.</th>
+        <th>R$ Total</th>
+      </tr>
+      <% @order.requests.each do |r| %>
+        <tr>
+          <td><%= r.item.item %></td>
+          <td><%= l r.item.validade %></td>
+          <td><%= r.item.tipo %></td>
+          <td><%= r.item.descricao %></td>
+          <td><%= r.qtd_solicitada %></td></td>
+          <td><%= r.item.unidade %></td>
+          <td><%= r.item.valor_unitario %></td>
+          <td><%= r.item.valor_unitario * r.qtd_solicitada %></td>
+        </tr>
+        <% total += r.item.valor_unitario * r.qtd_solicitada %>
+      <% end %>
+      <tr>
+        <td colspan="6">&nbsp;</td>
+        <td>R$ Total:</td>
+        <td><%= total %></td>
+      </tr>
+    </table>
+
+    <h4 class="title">4. Justificativas para Aquisição</h4>
+    <% @order.requests.each do |r| %>
+      <dl class="dl-horizontal">
+        <dt style="float: left; width: 10%;">Item <%= r.item.item %>:</dt>
+        <dd style="width: 90%; float: right"><%= r.justificativa %></dd>
+      </dl>
+    <% end %>
+
+  </div>
+</div>
