@@ -15,10 +15,12 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :full_name
     devise_parameter_sanitizer.for(:sign_up) << :cargo
     devise_parameter_sanitizer.for(:sign_up) << :siape
+    devise_parameter_sanitizer.for(:sign_up) << :telefone
 
     devise_parameter_sanitizer.for(:account_update) << :full_name
     devise_parameter_sanitizer.for(:account_update) << :cargo
     devise_parameter_sanitizer.for(:account_update) << :siape
+    devise_parameter_sanitizer.for(:account_update) << :telefone
   end
 
   private

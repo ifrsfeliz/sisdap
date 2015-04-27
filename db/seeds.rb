@@ -11,7 +11,7 @@
     puts "Role #{role} was created."
 end
 
-u = User.new(:email => "sti@feliz.ifrs.edu.br", :password => '12345678', :password_confirmation => '12345678', :siape => '9999999', full_name: 'Administrador - TI', :cargo => 'Inexistente')
+u = User.new(:email => "sti@feliz.ifrs.edu.br", :password => '12345678', :password_confirmation => '12345678', :siape => '9999999', full_name: 'Administrador - TI', :cargo => 'Inexistente', telefone: '(51) 3637-4424')
 u.save
 
 user = User.find_by_email('sti@feliz.ifrs.edu.br')
