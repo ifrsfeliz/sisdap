@@ -13,11 +13,13 @@ class ApplicationController < ActionController::Base
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :full_name
+    devise_parameter_sanitizer.for(:sign_up) << :departamento
     devise_parameter_sanitizer.for(:sign_up) << :cargo
     devise_parameter_sanitizer.for(:sign_up) << :siape
     devise_parameter_sanitizer.for(:sign_up) << :telefone
 
     devise_parameter_sanitizer.for(:account_update) << :full_name
+    devise_parameter_sanitizer.for(:account_update) << :departamento
     devise_parameter_sanitizer.for(:account_update) << :cargo
     devise_parameter_sanitizer.for(:account_update) << :siape
     devise_parameter_sanitizer.for(:account_update) << :telefone
