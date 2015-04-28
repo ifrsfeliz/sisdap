@@ -68,7 +68,15 @@ class OrdersController < ApplicationController
       format.pdf do
         render pdf: "solicitacao",
           template: 'orders/solicitacao.html.erb',
-          layout: 'pdf'
+            layout: 'pdf',
+          encoding: 'UTF8',
+      show_as_html: params[:debug].present?,
+      footer: {
+                right: "[page] de [topage]", 
+                left: "#{order_solicitacao_url(@order)}",
+                font_size: 9
+            }
+
       end
     end
   end
