@@ -20,7 +20,7 @@
 #  qtd_disponivel         :integer
 #
 
-class Item < ActiveRecord::Base
+class Item < ActiveRecord::Base # ITENS HOMOLOGADOS
 
   # Associations
   belongs_to :item_classification

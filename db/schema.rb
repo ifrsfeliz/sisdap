@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150512135433) do
+ActiveRecord::Schema.define(version: 20160125221515) do
 
   create_table "accounting_actions", force: :cascade do |t|
     t.string   "codigo",      limit: 255
@@ -121,6 +121,13 @@ ActiveRecord::Schema.define(version: 20150512135433) do
   create_table "roles_users", id: false, force: :cascade do |t|
     t.integer "role_id", limit: 4
     t.integer "user_id", limit: 4
+  end
+
+  create_table "stockroom_items", force: :cascade do |t|
+    t.text     "descricao",  limit: 65535
+    t.integer  "quantidade", limit: 4,     default: 0
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "supplier_groups", force: :cascade do |t|

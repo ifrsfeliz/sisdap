@@ -1,0 +1,13 @@
+<h1 class="title">Exibindo Item</h1>
+
+<dl class="dl-horizontal">
+  <dt>Descrição:</dt>
+  <dd><%= @stockroom_item.descricao %></dd>
+  <dt>Quantidade:</dt>
+  <dd><%= @stockroom_item.quantidade %></dd>
+</dl>
+
+<hr />
+
+<%= link_to 'Editar', edit_stockroom_item_path(@stockroom_item), class: 'btn btn-warning' %>
+<%= link_to 'Voltar', stockroom_items_path, class: 'btn btn-default' %>
