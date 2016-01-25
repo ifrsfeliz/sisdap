@@ -14,6 +14,6 @@ class Bid < ActiveRecord::Base
 
   # Associations
   belongs_to :uasg
-  has_many :items
+  has_many :items, dependent: :destroy
 
 end

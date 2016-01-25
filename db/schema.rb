@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427134737) do
+ActiveRecord::Schema.define(version: 20150512135433) do
 
   create_table "accounting_actions", force: :cascade do |t|
     t.string   "codigo",      limit: 255
@@ -83,6 +83,17 @@ ActiveRecord::Schema.define(version: 20150427134737) do
     t.integer  "user_id",    limit: 4
   end
 
+  create_table "request_logs", force: :cascade do |t|
+    t.text     "description", limit: 65535
+    t.integer  "request_id",  limit: 4
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "request_logs", ["request_id"], name: "index_request_logs_on_request_id", using: :btree
+  add_index "request_logs", ["user_id"], name: "index_request_logs_on_user_id", using: :btree
+
   create_table "requests", force: :cascade do |t|
     t.integer  "qtd_solicitada",           limit: 4
     t.datetime "created_at",                             null: false
@@ -96,7 +107,10 @@ ActiveRecord::Schema.define(version: 20150427134737) do
     t.integer  "item_id",                  limit: 4
     t.integer  "status",                   limit: 4
     t.text     "justificativa",            limit: 65535
+    t.integer  "action_plan_id",           limit: 4
   end
+
+  add_index "requests", ["action_plan_id"], name: "index_requests_on_action_plan_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -165,4 +179,6 @@ ActiveRecord::Schema.define(version: 20150427134737) do
 
   add_foreign_key "accounting_actions", "exercises"
   add_foreign_key "action_plans", "exercises"
+  add_foreign_key "request_logs", "requests"
+  add_foreign_key "request_logs", "users"
 end

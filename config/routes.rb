@@ -5,12 +5,14 @@ Rails.application.routes.draw do
 
   resources :exercises
 
-  resources :orders do 
+  get 'orders/meus_pedidos'
+  resources :orders do
     get 'solicitacao'
   end
 
   resources :requests do
     get 'status'
+    resources :request_logs
   end
 
   resources :uasgs

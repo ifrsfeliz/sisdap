@@ -17,43 +17,52 @@
 #
 
 class Request < ActiveRecord::Base
+  # Callbacks
+  after_update :add_request_log_about_status_change, :if => Proc.new {|a| a.status_changed?}
 
-  # status
-  AGUARDANDO_ENVIO                   = 1   # Aguardando envio do formuário para análise orçamentária (Solicitante)
-  ENVIADO_PARA_ANALISE               = 2   # Enviado para análise orçamentária (Analista Orçamentário)
-  PEDIDO_ACEITO                      = 3   # Pedido negado (Analista Orçamentário)
-  PEDIDO_NEGADO                      = 4   # Pedido aceito (Analista Orçamentário)
-  ENVIADO_PARA_COMPRAS               = 5   # Enviado ao setor de compras (Compras)
-  ENVIADO_PARA_EMPENHO               = 6   # Enviado para empenho (Compras)
-  EMPENHO_EFETUADO                   = 7   # Empenho efetuado (Financeiro)
-  ENVIADO_PARA_ALMOXARIFADO          = 8   # Encaminhado para o almoxarifado dar continuidade no processo(Almoxarifado)
-  EMPENHO_ENVIADO_AO_FORNECEDOR      = 9   # Empenho enviado ao fornecedor (Almoxarifado)
-  RECEBIDO_PROVISORIAMENTE           = 10   # Item recebido provisoriamente (Almoxarifado)
-  AGUARDANDO_RETIRADA                = 11  # Aguardando retirada do item no almoxarifado (Almoxarifado)
-  ITEM_ENTREGUE_AO_SOLICITANTE       = 12  # Item entregue ao solicitante (Almoxarifado)
-  FINALIZADO                         = 13  # Requisição Finalizada
+  # CONSTANTS
+  AGUARDANDO_ENVIO              = 1   # Aguardando envio do formuário para análise orçamentária (Solicitante)
+  PEDIDO_ACEITO                 = 2   # Pedido aceito (Analista Orçamentário)
+  ENVIADO_PARA_COMPRAS          = 3   # Enviado ao setor de compras (Compras)
+  ENVIADO_PARA_EMPENHO          = 4   # Enviado para empenho (Compras)
+  EMPENHO_EFETUADO              = 5   # Empenho efetuado (Financeiro)
+  ENVIADO_PARA_ALMOXARIFADO     = 6   # Encaminhado para o almoxarifado dar continuidade no processo(Almoxarifado)
+  EMPENHO_ENVIADO_AO_FORNECEDOR = 7   # Empenho enviado ao fornecedor (Almoxarifado)
+  RECEBIDO_PROVISORIAMENTE      = 8   # Item recebido provisoriamente (Almoxarifado)
+  AGUARDANDO_RETIRADA           = 9   # Aguardando retirada do item no almoxarifado (Almoxarifado)
+  ITEM_ENTREGUE_AO_SOLICITANTE  = 10  # Item entregue ao solicitante (Almoxarifado)
+  FINALIZADO                    = 11  # Requisição Finalizada
+  PEDIDO_NEGADO                 = 12  # Pedido negado (Analista Orçamentário)
+
+  STATUS = { 1  => "Aguardando envio do formuário para análise orçamentária",
+             2  => "Pedido aceito",
+             3  => "Enviado ao setor de compras",
+             4  => "Enviado para empenho",
+             5  => "Empenho efetuado",
+             6  => "Encaminhado para o almoxarifado dar continuidade no processo",
+             7  => "Empenho enviado ao fornecedor",
+             8  => "Item recebido provisoriamente",
+             9  => "Aguardando retirada do item no almoxarifado",
+             10 => "Item entregue ao solicitante",
+             11 => "Requisição finalizada",
+             12 => "Pedido negado" }
 
   # Associations
   belongs_to :order
   belongs_to :item
+  belongs_to :accounting_action
+  belongs_to :action_plan
+  has_many :request_logs, dependent: :destroy
 
-  STATUS = { 1  => 'Aguardando envio do formuário para análise orçamentária',
-             2  => 'Enviado para análise orçamentária',
-             3  => 'Pedido negado',
-             4  => 'Pedido aceito',
-             5  => 'Enviado ao setor de compras',
-             6  => 'Enviado para empenho',
-             7  => 'Empenho efetuado',
-             8  => 'Encaminhado para o almoxarifado dar continuidade no processo',
-             9  => 'Empenho enviado ao fornecedor',
-             10 => 'Item recebido provisoriamente',
-             11 => 'Aguardando retirada do item no almoxarifado',
-             12 => 'Item entregue ao solicitante',
-             13 => 'Requisição finalizada'
-           }
+
+
 
   def status_detalhado
     STATUS[self.status]
+  end
+
+  def add_request_log_about_status_change
+    self.request_logs.create(description: "O status foi alterado de <strong>#{STATUS[self.status_was]}</strong> para <strong>#{STATUS[self.status]}</strong>")
   end
 
 

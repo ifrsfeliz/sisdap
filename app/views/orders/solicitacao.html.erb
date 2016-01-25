@@ -16,7 +16,7 @@
       <table class="table table-condensed">
         <tr>
           <td><strong>Departamento: </strong><%= @order.user.departamento %></td>
-          <td><strong>Data:</strong> <%= l @order.created_at, format: :short %></td>
+          <td><strong>Data:</strong> <%= l @order.created_at, format: :long %></td>
         </tr>
         <tr>
           <td><strong>Requisitante: </strong><%= @order.user.full_name %></td>

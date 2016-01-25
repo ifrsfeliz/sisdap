@@ -1,0 +1,7 @@
+<%= simple_form_for([@request, RequestLog.new]) do |f| %>
+  <%= f.error_notification %>
+
+    <%= f.input :description, label: 'Descrição' %>
+
+    <%= f.button :submit, 'Novo Assentamento', class: 'btn btn-primary' %>
+<% end %>

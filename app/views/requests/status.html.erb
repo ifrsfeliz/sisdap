@@ -1,12 +1,65 @@
-<h1 class="title">Situação do Pedido Nº: <%= "1" %></h1>
+<h1 class="title">Situação do Item <%= @request.item.item %> da Solicitação nº <%= @request.order.id %></h1>
+
+<dl class="dl-horizontal">
+  <dt>Item:</dt>
+  <dd><%= @request.item.item %></dd>
+  <dt>Descrição:</dt>
+  <dd><%= link_to @request.item.descricao, bid_item_path(@request.item.bid, @request.item)  %></dd>
+  <dt>Justificativa:</dt>
+  <dd><%= @request.justificativa %></dd>
+  <dt>Pregão</dt>
+  <dd><%= @request.item.bid.numero %></dd>
+  <dt>Qtd Solicitada:</dt>
+  <dd><%= @request.qtd_solicitada %></dd>
+  <dt>Valor Unitário</dt>
+  <dd><%= humanized_money_with_symbol @request.item.valor_unitario %></dd>
+  <dt>Valor Total</dt>
+  <dd><%= humanized_money_with_symbol @request.item.valor_unitario * @request.qtd_solicitada %></dd>
+  <dt>Status Atual</dt>
+  <dd class="highlight"><strong><%= @request.status_detalhado %></strong></dd>
+</dl>
 
 <div class="checkout-wrap">
   <ul class="checkout-bar">
     <li class="<%= ([Request::AGUARDANDO_ENVIO].include? @request.status) ? 'active' : '' %> <%= (@request.status > Request::AGUARDANDO_ENVIO) ? 'visited' : '' %>">Pedido Efetuado</li>
-    <li class="<%= ([Request::ENVIADO_PARA_ANALISE, Request::PEDIDO_ACEITO].include? @request.status) ? 'active' : '' %> <%= (@request.status > Request::PEDIDO_NEGADO) ? 'visited' : '' %> <%= (@request.status == Request::PEDIDO_NEGADO) ? 'denied' : '' %>">Análise Orçamentária</li>
+    <li class="<%= ([Request::PEDIDO_ACEITO].include? @request.status) ? 'active' : '' %> <%= (@request.status > Request::PEDIDO_ACEITO) ? 'visited' : '' %> <%= (@request.status == Request::PEDIDO_NEGADO) ? 'denied' : '' %>">Análise Orçamentária</li>
     <li class="<%= ([Request::ENVIADO_PARA_COMPRAS].include? @request.status) ? 'active' : '' %> <%= (@request.status > Request::ENVIADO_PARA_COMPRAS) ? 'visited' : '' %> <%= (@request.status == Request::PEDIDO_NEGADO) ? 'denied' : '' %>">Set. Compras</li>
     <li class="<%= ([Request::EMPENHO_EFETUADO, Request::ENVIADO_PARA_EMPENHO].include? @request.status) ? 'active' : '' %> <%= (@request.status > Request::EMPENHO_EFETUADO) ? 'visited' : '' %> <%= (@request.status == Request::PEDIDO_NEGADO) ? 'denied' : '' %>">Set. Financeiro</li>
     <li class="<%= ([Request::ENVIADO_PARA_ALMOXARIFADO, Request::EMPENHO_ENVIADO_AO_FORNECEDOR, Request::RECEBIDO_PROVISORIAMENTE, Request::AGUARDANDO_RETIRADA, Request::ITEM_ENTREGUE_AO_SOLICITANTE].include? @request.status) ? 'active' : '' %> <%= (@request.status > Request::ITEM_ENTREGUE_AO_SOLICITANTE) ? 'visited' : '' %> <%= (@request.status == Request::PEDIDO_NEGADO) ? 'denied' : '' %>">Set. Almoxarifado</li>
     <li class="<%= ([Request::FINALIZADO].include? @request.status) ? 'visited' : '' %> <%= (@request.status == Request::PEDIDO_NEGADO) ? 'denied' : '' %>">Finalizado</li>
   </ul>
 </div>
+
+
+<h3 class="title">Assentamentos</h3>
+<table class="table table-striped">
+  <tr>
+    <th>Quem?</th>
+    <th>Data</th>
+    <th>Descrição</th>
+    <th>Ações</th>
+  </tr>
+  <% @request.request_logs.each do |rl| %>
+    <tr>
+      <td><%= (rl.user) ? rl.user.full_name : 'Sistema' %></td>
+      <td><%= l rl.created_at, format: :long %></td>
+      <td><%= rl.description.html_safe %></td>
+      <td>
+        <% if current_user == rl.user %>
+          <%= link_to 'Destruir', [@request, rl], method: :delete, data: { confirm: 'Você tem certeza?' } %>
+        <% else %>
+          &nbsp;
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+
+<% if can? :create, RequestLog %>
+  <hr />
+  <h4 class="title">Novo Assentamento</h4>
+  <%= render partial: 'request_logs/form' %>
+<% end %>
+
+

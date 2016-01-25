@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @exercises = Exercise.all.order('nome DESC')
   end
 
   # GET /orders/new
@@ -79,6 +80,11 @@ class OrdersController < ApplicationController
 
       end
     end
+  end
+
+  # GET /orders/meus_pedidos
+  def meus_pedidos
+    @orders = current_user.orders
   end
 
   private

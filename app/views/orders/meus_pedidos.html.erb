@@ -1,0 +1,22 @@
+<h1 class="title">Meus Pedidos</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>ID</th>
+    <th>Solicitante</th>
+    <th>Qtd Itens</th>
+    <th>Data Solicitação</th>
+    <th colspan="3">Ações</th>
+  </tr>
+
+  <%= content_tag_for(:tr, @orders) do |order| %>
+    <td><%= order.id %></td>
+    <td><%= order.user.full_name %></td>
+    <td><%= order.requests.count %></td>
+    <td><%= l order.created_at, format: :short %></td>
+    <td>
+      <%= link_to 'Mostrar', order, class: 'btn btn-default btn-xs' %>
+      <%= link_to 'Destruir', order, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-xs' %>
+    </td>
+  <% end %>
+</table>

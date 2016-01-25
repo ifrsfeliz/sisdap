@@ -42,7 +42,7 @@ class RequestsController < ApplicationController
   def update
     respond_to do |format|
       if @request.update(request_params)
-        format.html { redirect_to @request, notice: 'Request was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Solicitação salva com sucesso.' }
         format.json { render :show, status: :ok, location: @request }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class RequestsController < ApplicationController
   def destroy
     @request.destroy
     respond_to do |format|
-      format.html { redirect_to requests_url, notice: 'Request was successfully destroyed.' }
+      format.html { redirect_to requests_url, notice: 'Solicitação destruída com sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -74,6 +74,6 @@ class RequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
-      params.require(:request).permit(:qtd_solicitada)
+      params.require(:request).permit(:qtd_solicitada, :action_plan_id)
     end
 end

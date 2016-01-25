@@ -180,7 +180,9 @@ footer p {
   color: red;
 }
 
-
+.highlight {
+  color: #FF7400;
+}
 
 /* CHECKOUT BAR */
 @-webkit-keyframes myanimation {

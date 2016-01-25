@@ -9,12 +9,22 @@
       <dd><%= @order.user.email %></dd>
       <dt>Qtd de Items Solicitados:</dt>
       <dd><%= @order.requests.count %></dd>
+      <dt>Data do Pedido</dt>
+      <dd><%= l(@order.created_at, format: :long) %></dd>
     </dl>
-  </div>
-  
-  <div class="col-md-6">
-    <h4 class="important">IMPORTANTE! - Imprimir solicitação para ser colhida as assinaturas e entregue ao setor de Compras</h4>
     <%= link_to 'Gerar Solicitação', order_solicitacao_path(@order, format: :pdf), class: 'btn btn-primary'%>
+    <% if current_user.role? :solicitante %>
+      <span class="important">Imprima a solicitação para ser colhida as assinaturas e entregue ao setor de Compras</span>
+    <% end %>
+  </div>
+
+  <div class="col-md-6">
+    <% if current_user.role?(:admin) || current_user.role?(:orcamentario) %>
+    <h4 class="title">Administração da Solicitação</h4>
+      <%= link_to "Aprovar Solicitação", "#", class: "btn btn-success" %>
+      <%= link_to "Negar Solicitação", "#", class: "btn btn-danger" %>
+    <% end %>
+
   </div>
 </div>
 
@@ -28,10 +38,16 @@
     <th>Justificativa de Compra</th>
     <th>Pregão</th>
     <th>Qtd Sol.</th>
+    <th>Valor Un.</th>
+    <th>Valor Total</th>
+    <th>Plano de Ação</th>
+    <th><span data-toggle="tooltip" data-placement="top" title="Ação Contábil">Ação Cont.</span></th>
+    <th><span data-toggle="tooltip" data-placement="top" title="Número do Empenho">Nº Empenho</span></th>
+    <th><span data-toggle="tooltip" data-placement="top" title="Natureza da Despesa">ND</span></th>
+    <th>Fonte</th>
     <th>Status</th>
-    <th>Data do Pedido</th>
     <th>Ações</th>
-  <tr>
+  </tr>
   <% @order.requests.each do |r| %>
     <tr>
       <td><%= r.item.item %></td>
@@ -39,9 +55,48 @@
       <td><%= r.justificativa %></td>
       <td><%= r.item.bid.numero %></td>
       <td><%= r.qtd_solicitada %></td>
+      <td><%= humanized_money_with_symbol r.item.valor_unitario %></td>
+      <td><%= humanized_money_with_symbol r.item.valor_unitario * r.qtd_solicitada %></td>
+      <td>
+        <% if r.action_plan %>
+          <span data-toggle="tooltip" data-placement="top" title="<%= r.action_plan.nome %>"><%= r.action_plan.id %></span>
+        <% end %>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
       <td><%= r.status_detalhado %></td>
-      <td><%= l(r.created_at, format: :short) %></td>
-      <td><%= link_to "Status Detalhado", request_status_path(r), class: 'btn btn-xs btn-primary' %>
+      <td>
+        <p><%= link_to "Status Detalhado", request_status_path(r), class: 'btn btn-xs btn-primary' %></p>
+        <p>
+          <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal-<%= r.id %>">
+            <span data-toggle="tooltip" data-placement="top" title="Editar Plano de Ação">Editar P.A</span>
+          </button>
+          <div class="modal fade" id="modal-<%= r.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Associar Plano de Ação</h4>
+                </div>
+                <div class="modal-body">
+                  <p><strong>Item:</strong> <%= r.item.item %></p>
+                  <p><strong>Pregão:</strong> <%= r.item.bid.numero %></p>
+                  <p><strong>Descrição:</strong> <%= r.item.descricao.truncate(200) %></p>
+                  <%= simple_form_for(r) do |f| %>
+                    <%= f.input :action_plan_id, collection: @exercises, as: :grouped_select, group_method: :action_plans, group_label_method: :nome, label_method: :nome, input_html: { class: 'chosen-select' }, prompt: 'Selecione uma opção', label: 'Plano de Ação' %>
+                    <%= f.button :submit, "Salvar", class: 'btn btn-primary' %>
+                  <% end %>
+                </div>
+                <div class="modal-footer">
+                  <a href="#" class="btn btn-default" data-dismiss="modal">Cancelar</a>
+                </div>
+              </div>
+            </div>
+          </div><!-- modal -->
+        </p>
+      </td>
     </tr>
   <% end %>
 </table>

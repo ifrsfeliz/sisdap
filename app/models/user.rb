@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_and_belongs_to_many :roles
+  has_many :orders
+  has_many :request_logs
 
   def role?( role )
     !roles.find_by_name( role.to_s ).nil?
