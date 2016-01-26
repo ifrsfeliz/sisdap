@@ -3,11 +3,60 @@
 <dl class="dl-horizontal">
   <dt>Descrição:</dt>
   <dd><%= @stockroom_item.descricao %></dd>
-  <dt>Quantidade:</dt>
+  <dt>Saldo:</dt>
   <dd><%= @stockroom_item.quantidade %></dd>
 </dl>
 
 <hr />
 
-<%= link_to 'Editar', edit_stockroom_item_path(@stockroom_item), class: 'btn btn-warning' %>
+
+<div class="col-md-6">
+  <h3>Detalhamento das Entradas</h3>
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Número Empenho</th>
+      <th>Quantidade</th>
+      <th>Data</th>
+      <th>Detalhes</th>
+    </tr>
+    <% entries = 0 %>
+    <% @stockroom_item.stockroom_entries.each do |se| %>
+      <% entries += se.quantidade %>
+      <tr>
+        <td><%= se.id %></td>
+        <td><%= se.numero_empenho %></td>
+        <td><%= se.quantidade %></td>
+        <td><%= l se.created_at, format: :short %></td>
+        <td><%= link_to "Mais detalhes", stockroom_entry_path(se) %>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="col-md-6">
+  <h3>Detalhamento das Saídas</h3>
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Solicitante</th>
+      <th>Quantidade</th>
+      <th>Data</th>
+      <th>Detalhes</th>
+    </tr>
+    <% removals = 0 %>
+    <% @stockroom_item.stockroom_removal_items.each do |sri| %>
+      <% removals += sri.quantidade %>
+      <tr>
+        <td><%= sri.id %></td>
+        <td><%= sri.stockroom_removal.user.full_name %></td>
+        <td><%= sri.quantidade %></td>
+        <td><%= l sri.created_at, format: :short %></td>
+        <td><%= link_to "Mais detalhes", stockroom_removal_path(sri.stockroom_removal) %>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<hr />
+
 <%= link_to 'Voltar', stockroom_items_path, class: 'btn btn-default' %>

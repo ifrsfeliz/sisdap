@@ -1,0 +1,30 @@
+<h1 class="title">Exibindo Saída de Estoque</h1>
+
+<dl class="dl-horizontal">
+  <dt>Solicitante:</dt>
+  <dd><%= @stockroom_removal.user.full_name %></dd>
+  <dt>Data de Retirada:</dt>
+  <dd><%= l(@stockroom_removal.created_at, format: :short) %></dd>
+  <dt>Itens retirados:</dt>
+  <dd><%= @stockroom_removal.stockroom_removal_items.count %></dd>
+</dl>
+
+<hr />
+
+<h3>Itens retirados detalhamento:</h3>
+<table class="table">
+  <tr>
+    <th>Descricação</th>
+    <th>Qtd</th>
+  </tr>
+  <% @stockroom_removal.stockroom_removal_items.each do |sri| %>
+    <tr>
+      <td><%= sri.stockroom_item.descricao %></td>
+      <td><%= sri.quantidade %></td>
+    </tr>
+  <% end %>
+</table>
+
+<hr />
+
+<%= link_to 'Voltar', stockroom_removals_path, class: 'btn btn-default' %>

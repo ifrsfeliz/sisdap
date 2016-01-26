@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require chosen-jquery
+//= require cocoon
 //= require moment
 //= require bootstrap-datetimepicker
 //= require pickers

@@ -37,7 +37,7 @@ class StockroomEntriesController < ApplicationController
   def approve
     @stockroom_entry = StockroomEntry.find(params[:stockroom_entry_id])
     @stockroom_entry.aprovada = true
-    @stockroom_entry.stockroom_item.quantidade =+ @stockroom_entry.quantidade
+    @stockroom_entry.stockroom_item.quantidade += @stockroom_entry.quantidade
     @stockroom_entry.save!
     redirect_to stockroom_entries_path, notice: 'Entrada manual aprovada com sucesso.'
   end

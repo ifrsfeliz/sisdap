@@ -1,0 +1,19 @@
+<%= simple_form_for(@stockroom_removal) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.association :user, label: "Solicitante", label_method: :full_name, input_html: {class: 'chosen-select'} %>
+
+  <%= f.input :password, as: :password, required: true %>
+
+  <h3>Itens retirados</h3>
+  <div id="itens">
+    <%= f.simple_fields_for :stockroom_removal_items do |t| %>
+      <%= render 'stockroom_removal_item_fields', f: t %>
+    <% end %>
+    <%= link_to_add_association 'Adicionar outro item', f, :stockroom_removal_items, class: 'btn btn-success', :data => {"association-insertion-method" => "before" } %>
+  </div>
+
+  <hr />
+
+  <%= f.button :submit, class: 'btn btn-primary'%>
+<% end %>

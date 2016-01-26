@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160125234141) do
+ActiveRecord::Schema.define(version: 20160126004313) do
 
   create_table "accounting_actions", force: :cascade do |t|
     t.string   "codigo",      limit: 255
@@ -144,6 +144,22 @@ ActiveRecord::Schema.define(version: 20160125234141) do
     t.datetime "updated_at",                           null: false
   end
 
+  create_table "stockroom_removal_items", force: :cascade do |t|
+    t.integer  "stockroom_item_id",    limit: 4
+    t.integer  "stockroom_removal_id", limit: 4
+    t.integer  "quantidade",           limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  create_table "stockroom_removals", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "stockroom_removals", ["user_id"], name: "index_stockroom_removals_on_user_id", using: :btree
+
   create_table "supplier_groups", force: :cascade do |t|
     t.string   "nome",       limit: 255
     t.datetime "created_at",             null: false
@@ -202,4 +218,5 @@ ActiveRecord::Schema.define(version: 20160125234141) do
   add_foreign_key "action_plans", "exercises"
   add_foreign_key "request_logs", "requests"
   add_foreign_key "request_logs", "users"
+  add_foreign_key "stockroom_removals", "users"
 end

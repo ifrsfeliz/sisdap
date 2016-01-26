@@ -14,8 +14,10 @@
     <td><%= stockroom_item.quantidade %></td>
     <td>
       <%= link_to 'Mostrar', stockroom_item, class: 'btn btn-xs btn-info' %>
-      <%= link_to 'Editar', edit_stockroom_item_path(stockroom_item), class: 'btn btn-xs btn-warning' %>
-      <%= link_to 'Destruir', stockroom_item, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-xs btn-danger' %>
+      <% if !stockroom_item.stockroom_entries.any? %>
+        <%= link_to 'Editar', edit_stockroom_item_path(stockroom_item), class: 'btn btn-xs btn-warning' %>
+        <%= link_to 'Destruir', stockroom_item, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-xs btn-danger' %>
+      <% end %>
     </td>
   <% end %>
 </table>

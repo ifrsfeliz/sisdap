@@ -40,6 +40,9 @@ gem 'wicked_pdf'
 # ransack search
 gem 'ransack'
 
+# nested forms
+gem 'cocoon'
+
 # Let the Selects good to use
 gem 'chosen-rails'
 
@@ -69,5 +72,14 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+
+group :development do
+  gem 'foreman',              '0.77.0'
+  gem 'better_errors',        '2.1.1'
+  gem 'binding_of_caller',    '0.7.2'
+  gem 'letter_opener',        '1.3.0'
+  gem 'bullet',               '4.14.0'
+  gem 'quiet_assets',         '1.1.0'
 end
 

@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
+
   # Almoxarifado
   resources :stockroom_items
+  resources :stockroom_removals, except: [:edit]
   resources :stockroom_entries, except: [:edit] do
     put :approve
   end

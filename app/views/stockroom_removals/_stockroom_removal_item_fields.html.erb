@@ -1,0 +1,11 @@
+<div class="nested-fields">
+  <div class="box-gray">
+    <div class="col-md-6">
+      <%= f.association :stockroom_item, label_method: lambda {|item| "#{item.descricao} - (Qtd disponível: #{item.quantidade})"}, label: 'Item', input_html: {class: 'chosen-select'} %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :quantidade %>
+    </div>
+    <%= link_to_remove_association "X", f %>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stockroom_item_id: 1
+  stockroom_removal_id: 1
+
+two:
+  stockroom_item_id: 1
+  stockroom_removal_id: 1

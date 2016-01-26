@@ -290,6 +290,30 @@ ul.checkout-bar a {
   text-decoration: none;
 }
 
+.remove_fields {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #fff !important;
+  background: #57c6ca;
+  font-size: 16px;
+  text-align: center;
+  width: 24px;
+  height: 24px;
+  padding-top: 2px;
+}
+
+.box-gray {
+  background: #ededed;
+  padding: 10px 34px 0 10px;
+  margin-bottom: 10px;
+  display: block;
+  position: relative;
+  background-clip: padding-box;
+  width: 100%;
+  float: left;
+}
+
 @media all and (min-width: 800px) {
   .checkout-bar li.active:after {
     -webkit-animation: myanimation 3s 0;

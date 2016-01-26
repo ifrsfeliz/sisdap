@@ -1,0 +1,20 @@
+<h2>Notificação de retirada de itens do Almoxarifado</h2>
+
+<p>Este é um e-mail de confirmação de retirada de itens do almoxarifado.</p>
+
+<p>Abaixo segue o detalhamento da retirada dos itens:</p>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>Item</th>
+    <th>Quantidade</th>
+  </tr>
+  <% @stockroom_removal.stockroom_removal_items.each do |sri| %>
+    <tr>
+      <td><%= sri.stockroom_item.id %></td>
+      <td><%= sri.stockroom_item.descricao %></td>
+      <td><%= sri.quantidade %></td>
+    </tr>
+  <% end %>
+</table>
