@@ -1,0 +1,27 @@
+<h1 class="title">Exibindo Stockroom_entry</h1>
+
+<dl class="dl-horizontal">
+  <dt>ID:</dt>
+  <dd><%= @stockroom_entry.id %></dd>
+  <dt>Item do Estoque:</dt>
+  <dd><%= @stockroom_entry.stockroom_item.descricao %></dd>
+  <dt>Número do Empenho:</dt>
+  <dd><%= @stockroom_entry.numero_empenho %></dd>
+  <dt>Número Processo:</dt>
+  <dd><%= @stockroom_entry.numero_processo %></dd>
+  <dt>Quantidade:</dt>
+  <dd><%= @stockroom_entry.quantidade %></dd>
+  <dt>Valor Unitário:</dt>
+  <dd><%= humanized_money_with_symbol @stockroom_entry.valor_unitario %>
+  <dt>Valor Total:</dt>
+  <dd><%= humanized_money_with_symbol @stockroom_entry.valor_unitario * @stockroom_entry.quantidade %></dd>
+  <dt>Justificativa:</dt>
+  <dd><%= @stockroom_entry.justificativa %></dd>
+  <hr/ >
+  <dt>Aprovada?</dt>
+  <dd><%= (@stockroom_entry.aprovada?) ? 'Sim' : 'Não' %>
+</dl>
+
+<hr />
+
+<%= link_to 'Voltar', stockroom_entries_path, class: 'btn btn-default' %>

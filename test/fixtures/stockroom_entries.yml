@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  empenho_numero: MyString
+  processo_suap_numero: MyString
+  quantidade: 1
+  valor_unitario_cents: 1
+  justificativa: MyText
+
+two:
+  empenho_numero: MyString
+  processo_suap_numero: MyString
+  quantidade: 1
+  valor_unitario_cents: 1
+  justificativa: MyText

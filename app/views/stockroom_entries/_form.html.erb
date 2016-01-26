@@ -1,0 +1,12 @@
+<%= simple_form_for(@stockroom_entry) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.association :stockroom_item, label_method: :descricao, input_html: {class: 'chosen-select'}, label: 'Selecione o Item, caso não esteja na lista, deverá ser cadastrado um novo item no estoque.' %>
+  <%= f.input :numero_empenho, label: 'Número do Empenho' %>
+  <%= f.input :numero_processo, label: 'Número Processo' %>
+  <%= f.input :quantidade %>
+  <%= f.input :valor_unitario, label: 'Valor Unitário ex: (2500,00)', placeholder: '1999,99' %>
+  <%= f.input :justificativa %>
+
+  <%= f.button :submit, value: 'Salvar', class: 'btn btn-primary' %>
+<% end %>

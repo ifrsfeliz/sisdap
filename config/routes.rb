@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :stockroom_items
 
   # Almoxarifado
+  resources :stockroom_items
+  resources :stockroom_entries, except: [:edit] do
+    put :approve
+  end
+
   resources :accounting_actions
   resources :action_plans
   resources :exercises

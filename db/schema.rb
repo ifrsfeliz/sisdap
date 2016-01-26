@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160125221515) do
+ActiveRecord::Schema.define(version: 20160125234141) do
 
   create_table "accounting_actions", force: :cascade do |t|
     t.string   "codigo",      limit: 255
@@ -122,6 +122,20 @@ ActiveRecord::Schema.define(version: 20160125221515) do
     t.integer "role_id", limit: 4
     t.integer "user_id", limit: 4
   end
+
+  create_table "stockroom_entries", force: :cascade do |t|
+    t.string   "numero_empenho",       limit: 255
+    t.string   "numero_processo",      limit: 255
+    t.integer  "quantidade",           limit: 4
+    t.integer  "valor_unitario_cents", limit: 4
+    t.text     "justificativa",        limit: 65535
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.boolean  "aprovada",             limit: 1
+    t.integer  "stockroom_item_id",    limit: 4
+  end
+
+  add_index "stockroom_entries", ["stockroom_item_id"], name: "index_stockroom_entries_on_stockroom_item_id", using: :btree
 
   create_table "stockroom_items", force: :cascade do |t|
     t.text     "descricao",  limit: 65535
