@@ -13,4 +13,14 @@ class StockroomMovimentation < ActiveRecord::Base
 
   # Configs
   monetize :valor_unitario_cents, as: 'valor_unitario', :disable_validation => true #https://github.com/RubyMoney/money-rails
+
+  # Validations
+  validates :quantidade, presence: true, if: :entry?
+  validates :valor_unitario, presence: true, if: :entry?
+  validates :stockroom_item, presence: true, if: :entry?
+  validates :justificativa, presence: true, if: Proc.new{|sm| sm.entry? && sm.numero_empenho.blank? || sm.numero_processo.blank? }
+
+  validates :user, presence: true, if: :removal?
+  validates :stockroom_removal_items, presence: true, if: :removal?
+
 end
