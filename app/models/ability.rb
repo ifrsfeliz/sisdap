@@ -10,6 +10,10 @@ class Ability
       can :manage, Uasg
       can :manage, Supplier
       can :manage, RequestLog
+    elsif user.role? :almoxarifado
+      can :manage, StockroomItem
+      can :manage, StockroomMovimentation
+      can :manage, StockroomRemovalItems
     else #solicitante
       can :read, :all
     end
