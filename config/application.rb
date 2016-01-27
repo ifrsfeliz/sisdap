@@ -20,6 +20,9 @@ module Solpa
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # Load application ENV vars and merge with existing ENV vars. Loaded here so can use values in initializers.
+    ENV.update YAML.load_file('config/settings.yml')[Rails.env] rescue {}
+
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
@@ -34,12 +37,12 @@ module Solpa
       I18n.default_locale = :'pt-BR'
       config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
       config.i18n.locale = :'pt-BR'
-      
+
       # bypasses rails bug with i18n in production\
       I18n.reload!
       config.i18n.reload!
     end
-    
+
     config.i18n.default_locale = :'pt-BR'
     config.i18n.locale = :'pt-BR'
 
