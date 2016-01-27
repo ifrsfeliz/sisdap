@@ -15,7 +15,7 @@
     <td><%= l(stockroom_removal.created_at, format: :short) %></td>
     <td><%= stockroom_removal.stockroom_removal_items.count %>
     <td>
-      <%= link_to 'Mostrar', stockroom_removal, class: 'btn btn-xs btn-info' %>
+      <%= link_to 'Mostrar', stockroom_removal_path(stockroom_removal), class: 'btn btn-xs btn-info' %>
     </td>
   <% end %>
 </table>

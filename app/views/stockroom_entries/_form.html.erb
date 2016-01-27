@@ -1,4 +1,4 @@
-<%= simple_form_for(@stockroom_entry) do |f| %>
+<%= simple_form_for(@stockroom_entry, url: stockroom_entries_path) do |f| %>
   <%= f.error_notification %>
 
   <%= f.association :stockroom_item, label_method: :descricao, input_html: {class: 'chosen-select'}, label: 'Selecione o Item, caso não esteja na lista, deverá ser cadastrado um novo item no estoque.' %>

@@ -10,6 +10,11 @@ class StockroomItemsController < ApplicationController
   # GET /stockroom_items/1
   # GET /stockroom_items/1.json
   def show
+    @stockroom_movimentations = StockroomMovimentation.where(stockroom_item: @stockroom_item, aprovada: true)
+    @stockroom_item.stockroom_removal_items.each do |sri|
+      @stockroom_movimentations << sri.stockroom_movimentation
+    end
+    @stockroom_movimentations = @stockroom_movimentations.sort_by &:created_at
   end
 
   # GET /stockroom_items/new

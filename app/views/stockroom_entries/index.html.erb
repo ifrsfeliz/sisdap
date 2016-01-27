@@ -21,9 +21,9 @@
     <td><%= humanized_money_with_symbol stockroom_entry.valor_unitario %></td>
     <td><%=h truncate(stockroom_entry.justificativa, :length => 80) %></td>
     <td>
-      <%= link_to 'Mostrar', stockroom_entry, class: 'btn btn-xs btn-info' %>
+      <%= link_to 'Mostrar', stockroom_entry_path(stockroom_entry), class: 'btn btn-xs btn-info' %>
       <% if !stockroom_entry.aprovada? %>
-        <%= link_to 'Destruir', stockroom_entry, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-xs btn-danger' %>
+        <%= link_to 'Destruir', stockroom_entry_path(stockroom_entry), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-xs btn-danger' %>
         <%= link_to 'Aprovar', stockroom_entry_approve_path(stockroom_entry), method: :put, data: { confirm: 'Os dados realmente estão corretos?' }, class: 'btn btn-xs btn-success' %>
       <% end %>
     </td>

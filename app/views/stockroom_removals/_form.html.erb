@@ -1,4 +1,4 @@
-<%= simple_form_for(@stockroom_removal) do |f| %>
+<%= simple_form_for(@stockroom_removal, url: stockroom_removals_path) do |f| %>
   <%= f.error_notification %>
 
   <%= f.association :user, label: "Solicitante", label_method: :full_name, input_html: {class: 'chosen-select'} %>

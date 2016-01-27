@@ -1,4 +1,4 @@
-<h1 class="title">Exibindo Stockroom_entry</h1>
+<h1 class="title">Exibindo Entrada</h1>
 
 <dl class="dl-horizontal">
   <dt>ID:</dt>
@@ -17,9 +17,13 @@
   <dd><%= humanized_money_with_symbol @stockroom_entry.valor_unitario * @stockroom_entry.quantidade %></dd>
   <dt>Justificativa:</dt>
   <dd><%= @stockroom_entry.justificativa %></dd>
+  <dt>Criada em:</dt>
+  <dd><%= l @stockroom_entry.created_at, format: :short %></dd>
   <hr/ >
   <dt>Aprovada?</dt>
   <dd><%= (@stockroom_entry.aprovada?) ? 'Sim' : 'Não' %>
+  <dt>Aprovada em:</dt>
+  <dd><%= l(@stockroom_entry.aprovada_em, format: :short) if @stockroom_entry.aprovada_em.present? %></dd>
 </dl>
 
 <hr />

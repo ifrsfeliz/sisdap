@@ -2,16 +2,16 @@ class StockroomRemovalItem < ActiveRecord::Base
 
   # Associations
   belongs_to :stockroom_item, autosave: true
-  belongs_to :stockroom_removal
+  belongs_to :stockroom_movimentation
 
   # Validations
-  validates :stockroom_item_id, uniqueness: { scope: :stockroom_removal_id }
+  validates :stockroom_item_id, uniqueness: { scope: :stockroom_movimentation_id }
   validates :quantidade, numericality: { only_integer: true, :greater_than_or_equal_to => 1 }
   validates :quantidade, presence: true
   validates :stockroom_item_id, presence: true
   validate :presence_of_item_and_quantity
 
-  accepts_nested_attributes_for :stockroom_removal, :reject_if => :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :stockroom_movimentation, :reject_if => :all_blank, allow_destroy: true
 
   # Callbacks
   before_save :update_stockroom_item_quantity, prepend: true

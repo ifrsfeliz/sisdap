@@ -10,49 +10,37 @@
 <hr />
 
 
-<div class="col-md-6">
-  <h3>Detalhamento das Entradas</h3>
+<div class="col-md-12">
+  <h3>Detalhamento das Movimentações</h3>
   <table class="table">
     <tr>
       <th>ID</th>
-      <th>Número Empenho</th>
+      <th>Tipo Movimentação</th>
+      <th>Nº Empenho/Solicitante</th>
       <th>Quantidade</th>
+      <th>Saldo</th>
       <th>Data</th>
       <th>Detalhes</th>
     </tr>
-    <% entries = 0 %>
-    <% @stockroom_item.stockroom_entries.each do |se| %>
-      <% entries += se.quantidade %>
+    <% saldo = 0 %>
+    <% @stockroom_movimentations.each do |sm| %>
       <tr>
-        <td><%= se.id %></td>
-        <td><%= se.numero_empenho %></td>
-        <td><%= se.quantidade %></td>
-        <td><%= l se.created_at, format: :short %></td>
-        <td><%= link_to "Mais detalhes", stockroom_entry_path(se) %>
-      </tr>
-    <% end %>
-  </table>
-</div>
-
-<div class="col-md-6">
-  <h3>Detalhamento das Saídas</h3>
-  <table class="table">
-    <tr>
-      <th>ID</th>
-      <th>Solicitante</th>
-      <th>Quantidade</th>
-      <th>Data</th>
-      <th>Detalhes</th>
-    </tr>
-    <% removals = 0 %>
-    <% @stockroom_item.stockroom_removal_items.each do |sri| %>
-      <% removals += sri.quantidade %>
-      <tr>
-        <td><%= sri.id %></td>
-        <td><%= sri.stockroom_removal.user.full_name %></td>
-        <td><%= sri.quantidade %></td>
-        <td><%= l sri.created_at, format: :short %></td>
-        <td><%= link_to "Mais detalhes", stockroom_removal_path(sri.stockroom_removal) %>
+        <td><%= sm.id %></td>
+        <% if sm.entry? %>
+          <td>Entrada</th>
+          <td><%= sm.numero_empenho %></td>
+          <td>+ <%= sm.quantidade %></td>
+          <td><%= saldo += sm.quantidade %></td>
+          <td><%= l sm.created_at, format: :short %></td>
+          <td><%= link_to "Mais detalhes", stockroom_entry_path(sm)%>
+        <% else %>
+          <td>Saída</th>
+          <td><%= sm.user.full_name %></td>
+          <td>- <%= sm.stockroom_removal_items.where(stockroom_item: @stockroom_item).first.quantidade %></td>
+          <td><%= saldo -= sm.stockroom_removal_items.where(stockroom_item: @stockroom_item).first.quantidade %></td>
+          <td><%= l sm.created_at, format: :short %></td>
+          <td><%= link_to "Mais detalhes", stockroom_removal_path(sm) %>
+        <% end %>
       </tr>
     <% end %>
   </table>
