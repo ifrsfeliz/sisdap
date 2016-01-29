@@ -16,7 +16,7 @@ pt-BR:
       not_found_in_database: "Email ou senha inválidos."
       timeout: "Para sua segurança sua sessão expirou. Por favor, faça login novamente."
       unauthenticated: "Você precisa se logar ou registrar antes de prosseguir."
-      unconfirmed: "Você precisa confirmar sua conta antes de prosseguir."
+      unconfirmed: "Você precisa confirmar sua conta antes de prosseguir. Verifique seu e-mail de cadastro."
     mailer:
       confirmation_instructions:
         subject: "Instruções para confirmação"
