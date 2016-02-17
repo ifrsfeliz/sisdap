@@ -23,4 +23,12 @@ class StockroomMovimentation < ActiveRecord::Base
   validates :user, presence: true, if: :removal?
   validates :stockroom_removal_items, presence: true, if: :removal?
 
+  #Scopes
+  scope :created_between, -> (start_date, end_date) { where("created_at >= ? AND created_at <= ?", start_date.beginning_of_day, end_date.end_of_day ) }
+
+  # Override removal enum scope
+  def self.removal
+    self.where(tipo_movimentacao: StockroomMovimentation.tipo_movimentacaos[:removal]).order(created_at: :desc)
+  end
+
 end

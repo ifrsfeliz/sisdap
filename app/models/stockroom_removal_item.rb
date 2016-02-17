@@ -4,6 +4,8 @@ class StockroomRemovalItem < ActiveRecord::Base
   belongs_to :stockroom_item, autosave: true
   belongs_to :stockroom_movimentation
 
+  default_scope {order(created_at: :desc)}
+
   # Validations
   validates :stockroom_item_id, uniqueness: { scope: :stockroom_movimentation_id }
   validates :quantidade, numericality: { only_integer: true, :greater_than_or_equal_to => 1 }

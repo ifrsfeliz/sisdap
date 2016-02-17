@@ -1,10 +1,16 @@
 class StockroomRemovalsController < ApplicationController
+
   before_action :set_stockroom_removal, only: [:show, :update, :destroy]
 
   # GET /stockroom_removals
   # GET /stockroom_removals.json
   def index
-    @stockroom_removals = StockroomMovimentation.removal
+    @filter = StockroomRemovalFilter.new({
+      start_date: params.fetch(:stockroom_removal_filter, nil).try(:fetch, :start_date, nil),
+      end_date: params.fetch(:stockroom_removal_filter, nil).try(:fetch, :end_date, nil)
+    })
+
+    @stockroom_removals = @filter.search
   end
 
   # GET /stockroom_removals/1

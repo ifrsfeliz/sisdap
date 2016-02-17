@@ -1,5 +1,20 @@
 <h1 class="title">Lista de Retirada de Items do Almoxarifado</h1>
 
+<div class="row">
+  <div class="col-md-12">
+    <div class="pull-right">
+      <%= simple_form_for @filter, url: stockroom_removals_path, method: :get, html: { class: 'form-inline' } do |f| %>
+        <%= f.input :start_date, as: :date_picker, placeholder: 'Data Inicial', label: false %>
+        <%= f.input :end_date, as: :date_picker, placeholder: 'Data Final', label: false %>
+        <%= f.submit 'Filtrar', class: 'btn btn-primary' %>
+        <%= link_to 'Limpar Filtro', stockroom_removals_path, class: 'btn btn-default' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<hr />
+
 <table class="table table-striped">
   <tr>
     <th>ID</th>
