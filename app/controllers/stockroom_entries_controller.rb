@@ -1,10 +1,11 @@
 class StockroomEntriesController < ApplicationController
   before_action :set_stockroom_entry, only: [:show, :destroy]
+  load_and_authorize_resource class: StockroomMovimentation
 
   # GET /stockroom_entries
   # GET /stockroom_entries.json
   def index
-    @stockroom_entries = StockroomMovimentation.entry
+    @stockroom_entries = StockroomMovimentation.entry.order(created_at: :desc)
   end
 
   # GET /stockroom_entries/1

@@ -37,4 +37,4 @@
 
 <hr />
 
-<%= link_to 'Nova Retirada de Item', new_stockroom_removal_path, class: 'btn btn-success' %>
+<%= link_to 'Nova Retirada de Item', new_stockroom_removal_path, class: 'btn btn-success' if can?(:create, StockroomMovimentation) %>

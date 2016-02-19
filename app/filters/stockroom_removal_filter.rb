@@ -8,9 +8,9 @@ class StockroomRemovalFilter < BaseFilter
 
   def search
     if @start_date && @end_date
-      StockroomMovimentation.removal.created_between(start_date, end_date)
+      StockroomMovimentation.removal.created_between(start_date, end_date).order(created_at: :desc)
     else
-      StockroomMovimentation.removal
+      StockroomMovimentation.removal.order(created_at: :desc)
     end
   end
 

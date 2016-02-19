@@ -1,6 +1,6 @@
 class StockroomRemovalsController < ApplicationController
-
   before_action :set_stockroom_removal, only: [:show, :update, :destroy]
+  load_and_authorize_resource class: StockroomMovimentation
 
   # GET /stockroom_removals
   # GET /stockroom_removals.json

@@ -13,10 +13,8 @@ class Ability
     elsif user.role? :almoxarifado
       can :manage, StockroomItem
       can :manage, StockroomMovimentation
-      can :manage, StockroomRemovalItems
     else #solicitante
       can :read, :all
     end
-
   end
 end
