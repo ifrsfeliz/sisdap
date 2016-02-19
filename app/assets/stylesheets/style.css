@@ -314,6 +314,44 @@ ul.checkout-bar a {
   float: left;
 }
 
+/* button */
+.fly-wrapper {
+  bottom: 17px;
+  padding: 23px 23px 23px 15px;
+  position: fixed;
+  right: 10px;
+  white-space: nowrap;
+  z-index: 200;
+}
+
+.fly-button {
+  background-color: rgba(92,184,92,.87);
+  border-radius: 50%;
+  box-sizing: content-box;
+  cursor: pointer;
+  height: 60px;
+  pointer-events: auto;
+  position: relative;
+  width: 60px;
+}
+
+.fly-button:hover {
+  background-color: rgba(68,157,68,.87);
+}
+
+.fly-button:focus {
+  border: 0;
+}
+
+.fly-add-icon {
+  left: 22px;
+  top: 21px;
+  position: absolute;
+  opacity: 1;
+  font-size: 20px;
+  color: #FFF;
+}
+
 @media all and (min-width: 800px) {
   .checkout-bar li.active:after {
     -webkit-animation: myanimation 3s 0;
@@ -413,7 +451,7 @@ ul.checkout-bar a {
     position: absolute;
     width: 75%;
   }
-  
+
   ul.checkout-bar li.denied {
     background: none;
   }

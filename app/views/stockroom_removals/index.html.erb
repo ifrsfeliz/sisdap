@@ -35,6 +35,10 @@
   <% end %>
 </table>
 
-<hr />
-
-<%= link_to 'Nova Retirada de Item', new_stockroom_removal_path, class: 'btn btn-success' if can?(:create, StockroomMovimentation) %>
+<%= content_tag(:div, class: 'fly-wrapper') do %>
+  <%= link_to new_stockroom_removal_path, title: 'Adicionar nova saída' do %>
+    <div class="fly-button">
+      <i class="fa fa-plus fly-add-icon"></i>
+    </div>
+  <% end %>
+<% end if can?(:create, StockroomMovimentation) %>

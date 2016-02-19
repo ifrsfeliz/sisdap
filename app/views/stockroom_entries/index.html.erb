@@ -1,37 +1,43 @@
 <h1 class="title">Lista de Entradas</h1>
 
-<table class="table table-striped">
-  <tr>
-    <th>ID</th>
-    <th>Item</th>
-    <th>Número do Empenho</th>
-    <th>Número Processo SUAP</th>
-    <th>Qtd</th>
-    <th>Valor Unitário</th>
-    <th>Justificativa</th>
-    <th>Criada em</th>
-    <th>Ações</th>
-  </tr>
+<div class="table table-responsive">
+  <table class="table table-striped">
+    <tr>
+      <th>ID</th>
+      <th>Item</th>
+      <th>Número do Empenho</th>
+      <th>Número Processo SUAP</th>
+      <th>Qtd</th>
+      <th>Valor Unitário</th>
+      <th>Justificativa</th>
+      <th>Criada em</th>
+      <th>Ações</th>
+    </tr>
+  
+    <%= content_tag_for(:tr, @stockroom_entries) do |stockroom_entry| %>
+      <td><%= stockroom_entry.id %></td>
+      <td><%= stockroom_entry.stockroom_item.descricao %></td>
+      <td><%= stockroom_entry.numero_empenho %></td>
+      <td><%= stockroom_entry.numero_processo %></td>
+      <td><%= stockroom_entry.quantidade %></td>
+      <td><%= humanized_money_with_symbol stockroom_entry.valor_unitario %></td>
+      <td><%= h truncate(stockroom_entry.justificativa, :length => 80) %></td>
+      <td><%= l stockroom_entry.created_at, format: :short %></td>
+      <td>
+        <%= link_to 'Mostrar', stockroom_entry_path(stockroom_entry), class: 'btn btn-xs btn-info' %>
+        <% if !stockroom_entry.aprovada? %>
+          <%= link_to 'Destruir', stockroom_entry_path(stockroom_entry), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-xs btn-danger' if can?(:destroy, stockroom_entry) %>
+          <%= link_to 'Aprovar', stockroom_entry_approve_path(stockroom_entry), method: :put, data: { confirm: 'Os dados realmente estão corretos?' }, class: 'btn btn-xs btn-success' if can?(:update, stockroom_entry) %>
+        <% end %>
+      </td>
+    <% end %>
+  </table>
+</div>
 
-  <%= content_tag_for(:tr, @stockroom_entries) do |stockroom_entry| %>
-    <td><%= stockroom_entry.id %></td>
-    <td><%= stockroom_entry.stockroom_item.descricao %></td>
-    <td><%= stockroom_entry.numero_empenho %></td>
-    <td><%= stockroom_entry.numero_processo %></td>
-    <td><%= stockroom_entry.quantidade %></td>
-    <td><%= humanized_money_with_symbol stockroom_entry.valor_unitario %></td>
-    <td><%= h truncate(stockroom_entry.justificativa, :length => 80) %></td>
-    <td><%= l stockroom_entry.created_at, format: :short %></td>
-    <td>
-      <%= link_to 'Mostrar', stockroom_entry_path(stockroom_entry), class: 'btn btn-xs btn-info' %>
-      <% if !stockroom_entry.aprovada? %>
-        <%= link_to 'Destruir', stockroom_entry_path(stockroom_entry), method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-xs btn-danger' if can?(:destroy, stockroom_entry) %>
-        <%= link_to 'Aprovar', stockroom_entry_approve_path(stockroom_entry), method: :put, data: { confirm: 'Os dados realmente estão corretos?' }, class: 'btn btn-xs btn-success' if can?(:update, stockroom_entry) %>
-      <% end %>
-    </td>
+<%= content_tag(:div, class: 'fly-wrapper') do %>
+  <%= link_to new_stockroom_entry_path, title: 'Adicionar nova entrada' do %>
+    <div class="fly-button">
+      <i class="fa fa-plus fly-add-icon"></i>
+    </div>
   <% end %>
-</table>
-
-<hr />
-
-<%= link_to 'Nova Entrada Manual', new_stockroom_entry_path, class: 'btn btn-success' if can?(:create, StockroomMovimentation) %>
+<% end if can?(:create, StockroomItem) %>

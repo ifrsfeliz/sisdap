@@ -22,6 +22,10 @@
   <% end %>
 </table>
 
-<hr />
-
-<%= link_to 'Novo Item', new_stockroom_item_path, class: 'btn btn-success' if can?(:create, StockroomItem)%>
+<%= content_tag(:div, class: 'fly-wrapper') do %>
+  <%= link_to new_stockroom_item_path, title: 'Adicionar novo item' do %>
+    <div class="fly-button">
+      <i class="fa fa-plus fly-add-icon"></i>
+    </div>
+  <% end %>
+<% end if can?(:create, StockroomItem) %>
