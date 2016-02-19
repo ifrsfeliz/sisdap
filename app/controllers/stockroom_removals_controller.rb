@@ -112,6 +112,6 @@ class StockroomRemovalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stockroom_removal_params
-      params.require(:stockroom_movimentation).permit(:user_id, stockroom_removal_items_attributes: [:id, :stockroom_item_id, :quantidade, :_destroy])
+      params.require(:stockroom_movimentation).permit(:user_id, :justificativa, stockroom_removal_items_attributes: [:id, :stockroom_item_id, :quantidade, :_destroy])
     end
 end

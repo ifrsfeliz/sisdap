@@ -13,6 +13,10 @@
     <%= link_to_add_association 'Adicionar outro item', f, :stockroom_removal_items, class: 'btn btn-success', :data => {"association-insertion-method" => "before" } %>
   </div>
 
+  <br />
+
+  <%= f.input :justificativa %>
+
   <hr />
 
   <%= f.button :submit, value: 'Salvar', class: 'btn btn-primary'%>
