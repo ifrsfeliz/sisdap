@@ -3,7 +3,7 @@
 
   <%= f.association :user, label: "Solicitante", label_method: :full_name, input_html: {class: 'chosen-select'} %>
 
-  <%= f.input :password, as: :password, required: true %>
+  <%= f.input :password, as: :password, required: true, label: 'Senha' %>
 
   <h3>Itens retirados</h3>
   <div id="itens">
@@ -12,8 +12,6 @@
     <% end %>
     <%= link_to_add_association 'Adicionar outro item', f, :stockroom_removal_items, class: 'btn btn-success', :data => {"association-insertion-method" => "before" } %>
   </div>
-
-  <br />
 
   <%= f.input :justificativa %>
 
