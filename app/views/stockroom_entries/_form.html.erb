@@ -8,5 +8,5 @@
   <%= f.input :valor_unitario, label: 'Valor Unitário ex: (2500,00)', placeholder: '1999,99' %>
   <%= f.input :justificativa %>
 
-  <%= f.button :submit, value: 'Salvar', class: 'btn btn-primary' %>
+  <%= f.button :submit, value: 'Salvar', class: 'btn btn-primary', data: { disable_with: "Processando..." } %>
 <% end %>
