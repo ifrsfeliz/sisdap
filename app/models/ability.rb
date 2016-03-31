@@ -14,7 +14,7 @@ class Ability
       can :manage, RequestLog
     elsif user.role? :almoxarifado
       can :read, :all
-      can :manage, StockroomItem
+      can :create, StockroomItem
       can :create, StockroomMovimentation
     else #solicitante
       can :read, :all
