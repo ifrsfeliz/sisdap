@@ -2,9 +2,8 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'rails', '4.2.5.1'
+# Use the database for Active Record
 gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -50,7 +49,7 @@ gem 'chosen-rails'
 # simple form && datepicker
 gem 'simple_form'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
-gem 'momentjs-rails', '>= 2.8.1', :github => 'derekprior/momentjs-rails' #dependency of datetimepicker-rails
+gem 'momentjs-rails', '~> 2.9', :github => 'derekprior/momentjs-rails' #dependency of datetimepicker-rails
 
 # Monetize
 gem 'money-rails'
@@ -65,6 +64,7 @@ gem 'money-rails'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
