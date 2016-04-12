@@ -17,8 +17,7 @@
 //= require cocoon
 //= require moment
 //= require bootstrap-datetimepicker
-//= require pickers
 //= require bootstrap-datetimepicker.pt-br
+//= require pickers
 //= require turbolinks
-//
 //= require_tree .
