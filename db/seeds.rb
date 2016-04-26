@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
-['admin', 'orcamentario', 'financeiro', 'licitacao', 'almoxarifado', 'solicitante'].each do |role|
+['admin', 'orcamentario', 'financeiro', 'licitacao', 'almoxarifado', 'solicitante', 'dap'].each do |role|
     Role.find_or_create_by({name: role})
     puts "Role #{role} was created."
 end

@@ -1,0 +1,18 @@
+<h2>Notificação de entrada de item no Almoxarifado</h2>
+
+<p>Este é um e-mail de aviso de entrada de item no almoxarifado, que necessita de sua aprovação.</p>
+
+<p>Abaixo segue o detalhamento da entrada:</p>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>Item</th>
+    <th>Quantidade</th>
+  </tr>
+  <tr>
+    <td><%= @stockroom_entry.id %></td>
+    <td><%= @stockroom_entry.stockroom_item.descricao %></td>
+    <td><%= @stockroom_entry.quantidade %></td>
+  </tr>
+</table>
