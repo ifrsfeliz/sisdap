@@ -7,6 +7,9 @@ class Ability
     if user.role? :admin
       can :read, :all
       can :manage, :all
+    elsif user.role? :dap
+      can :read, :all
+      can :manage, :all
     elsif user.role? :licitacao
       can :read, :all
       can :manage, Uasg

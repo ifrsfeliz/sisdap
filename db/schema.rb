@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127202842) do
+ActiveRecord::Schema.define(version: 20160426173040) do
 
   create_table "accounting_actions", force: :cascade do |t|
     t.string   "codigo",      limit: 255
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20160127202842) do
     t.integer  "valor_unitario_cents",   limit: 4
     t.string   "tipo",                   limit: 255
     t.text     "observacao",             limit: 65535
-    t.boolean  "ativo",                  limit: 1
+    t.boolean  "ativo"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.integer  "bid_id",                 limit: 4
@@ -136,7 +136,7 @@ ActiveRecord::Schema.define(version: 20160127202842) do
     t.integer  "quantidade",           limit: 4
     t.integer  "valor_unitario_cents", limit: 4
     t.text     "justificativa",        limit: 65535
-    t.boolean  "aprovada",             limit: 1
+    t.boolean  "aprovada"
     t.datetime "aprovada_em"
     t.integer  "stockroom_item_id",    limit: 4
     t.integer  "tipo_movimentacao",    limit: 4
@@ -199,7 +199,7 @@ ActiveRecord::Schema.define(version: 20160127202842) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "admin_authorization",    limit: 1
+    t.boolean  "admin_authorization"
     t.string   "full_name",              limit: 255
     t.string   "cargo",                  limit: 255
     t.string   "siape",                  limit: 255
@@ -216,6 +216,9 @@ ActiveRecord::Schema.define(version: 20160127202842) do
 
   add_foreign_key "accounting_actions", "exercises"
   add_foreign_key "action_plans", "exercises"
+  add_foreign_key "bids", "uasgs"
+  add_foreign_key "items", "item_classifications"
+  add_foreign_key "items", "suppliers"
   add_foreign_key "request_logs", "requests"
   add_foreign_key "request_logs", "users"
 end

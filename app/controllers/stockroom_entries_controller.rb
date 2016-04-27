@@ -26,6 +26,7 @@ class StockroomEntriesController < ApplicationController
 
     respond_to do |format|
       if @stockroom_entry.save
+        StockroomMailer.notificacao_de_entrada_de_item(@stockroom_entry).deliver_later
         format.html { redirect_to stockroom_entry_path(@stockroom_entry), notice: 'Entrada manual criada com sucesso.' }
       else
         format.html { render :new }
