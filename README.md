@@ -1,9 +1,8 @@
-# solpa-rails
-Sistema de Licitatório, Orçamentário e de Planejamento Administrativo
+# SisDAP
+Sistema do Departamento de Administração e Planejamento
 
 
-
-# Dependencias
+# Dependências
 
 WKHTMLTOPDF (TER CERTEZA DE TER SIDO COMPILADO COM QT PACHED, CASO CONTRÁRIO OS RODAPÉS E CABEÇALHOS NÂO FUNCIONARÂO)
 
@@ -26,7 +25,7 @@ In Ubuntu 12.04, open the terminal and type:
 Maneira de testar: ```wkhtmltopdf --default-header http://google.com.br teste.pdf```
 
 
-# Sistema de Controle de Projetos de Pesquisa (rails)
+# Sistema do Departamento de Administração e Planejamento (rails)
 
 **Baixar o projeto, descompactar e fazer as alterações abaixo**
 
@@ -38,7 +37,7 @@ Por questões de padrões de segurança, não ser o root
   mkdir ~/app
   sudo apt-get install git-core
 
-  git clone https://github.com/ifrsfeliz/solpa-rails.git ~/app/sisdap
+  git clone https://github.com/ifrsfeliz/sisdap.git ~/app/sisdap
   cd ~/app/sisdap
 ```
 
@@ -46,7 +45,7 @@ Por questões de padrões de segurança, não ser o root
 
 Na pasta do projeto `~/app/sisdap`, deverão ser trocadas imagens que referenciam os campus:
 
-As imagens podem ser vistas aqui: https://github.com/ifrsfeliz/solpa-rails/tree/master/app/assets/images
+As imagens podem ser vistas aqui: https://github.com/ifrsfeliz/sisdap/tree/master/app/assets/images
 
 Na pasta: app/assets/images trocar as três imagens necessárias:
 
