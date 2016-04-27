@@ -12,8 +12,8 @@ development:
   reconnect: false
   database: solpa_dev
   pool: 5
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  username: "<%= ENV['DATABASE_USERNAME'] %>"
+  password: "<%= ENV['DATABASE_PASSWORD'] %>"
   host: localhost
   port: 3306
 
@@ -26,8 +26,8 @@ test:
   reconnect: false
   database: solpa_test
   pool: 5
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  username: "<%= ENV['DATABASE_USERNAME'] %>"
+  password: "<%= ENV['DATABASE_PASSWORD'] %>"
   host: localhost
   port: 3306
 
@@ -35,9 +35,9 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: <%= ENV['DATABASE'] %>
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  database: "<%= ENV['DATABASE'] %>"
+  username: "<%= ENV['DATABASE_USERNAME'] %>"
+  password: "<%= ENV['DATABASE_PASSWORD'] %>"
   pool: 5
   host: localhost
   port: 3306
