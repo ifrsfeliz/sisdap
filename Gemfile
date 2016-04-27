@@ -54,6 +54,8 @@ gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: '
 #To fix is the user egeek has created a PR, so while the main contributor do not merge we will use the specific fix
 gem 'momentjs-rails', '~> 2.11.1', :github => 'egeek/momentjs-rails' #dependency of datetimepicker-rails
 
+# ENV VARS
+gem 'dotenv-rails'
 
 # Monetize
 gem 'money-rails'

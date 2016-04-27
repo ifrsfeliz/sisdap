@@ -1,5 +1,3 @@
-# MySQL.  Versions 4.1 and 5.0 are recommended.
-# 
 # Install the MYSQL driver
 #   gem install mysql2
 #
@@ -14,8 +12,8 @@ development:
   reconnect: false
   database: solpa_dev
   pool: 5
-  username: root
-  password: 'senha'
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   host: localhost
   port: 3306
 
@@ -28,8 +26,8 @@ test:
   reconnect: false
   database: solpa_test
   pool: 5
-  username: root
-  password: 'senha'
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   host: localhost
   port: 3306
 
@@ -37,9 +35,9 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: solpa_dev
-  username: root
-  password: 'senha'
+  database: <%= ENV['DATABASE'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   pool: 5
   host: localhost
   port: 3306

@@ -112,6 +112,8 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.0.1)
     dotenv (1.0.2)
+    dotenv-rails (1.0.2)
+      dotenv (= 1.0.2)
     erubis (2.7.0)
     execjs (2.6.0)
     ffi (1.9.10)
@@ -263,6 +265,7 @@ DEPENDENCIES
   datetimepicker-rails!
   devise
   devise-i18n
+  dotenv-rails
   foreman (= 0.77.0)
   jbuilder (~> 2.0)
   jquery-rails
