@@ -79,15 +79,15 @@ Rails.application.configure do
 
   # Email SMTP Configuration
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.asset_host = ENV['server_url']
-  config.action_mailer.default_url_options = { :host => ENV['server_url'] }
+  config.action_mailer.asset_host = ENV['SERVER_URL']
+  config.action_mailer.default_url_options = { :host => ENV['SERVER_URL'] }
 
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :user_name            => ENV['gmail_username'],
-    :password             => ENV['gmail_password'],
+    :user_name            => ENV['GMAIL_USERNAME'],
+    :password             => ENV['GMAIL_PASSWORD'],
     :authentication       => :plain,
     :enable_starttls_auto => true
   }
