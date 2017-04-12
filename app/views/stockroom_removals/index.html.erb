@@ -4,6 +4,7 @@
   <div class="col-md-12">
     <div class="pull-right">
       <%= simple_form_for @filter, url: stockroom_removals_path, method: :get, html: { class: 'form-inline' } do |f| %>
+        <%= f.input :user, collection: User.all, label_method: :full_name, label: false, include_blank: 'Filtar por Solicitante', input_html: {class: 'chosen-select'}, selected: @filter.user.try(:id) %>
         <%= f.input :start_date, as: :date_picker, placeholder: 'Data Inicial', label: false %>
         <%= f.input :end_date, as: :date_picker, placeholder: 'Data Final', label: false %>
         <%= f.submit 'Filtrar', class: 'btn btn-primary' %>

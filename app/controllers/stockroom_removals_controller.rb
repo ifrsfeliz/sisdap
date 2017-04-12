@@ -7,7 +7,8 @@ class StockroomRemovalsController < ApplicationController
   def index
     @filter = StockroomRemovalFilter.new({
       start_date: params.fetch(:stockroom_removal_filter, nil).try(:fetch, :start_date, nil),
-      end_date: params.fetch(:stockroom_removal_filter, nil).try(:fetch, :end_date, nil)
+      end_date: params.fetch(:stockroom_removal_filter, nil).try(:fetch, :end_date, nil),
+      user: params.fetch(:stockroom_removal_filter, nil).try(:fetch, :user, nil)
     })
 
     @stockroom_removals = @filter.search
