@@ -4,7 +4,7 @@
   <dt>Solicitante:</dt>
   <dd><%= @stockroom_removal.user.full_name %></dd>
   <dt>Data de Retirada:</dt>
-  <dd><%= l(@stockroom_removal.created_at, format: :short) %></dd>
+  <dd><%= l(@stockroom_removal.created_at, format: :medium_long_b) %></dd>
   <dt>Itens retirados:</dt>
   <dd><%= @stockroom_removal.stockroom_removal_items.count %></dd>
   <dt>Justificativa:</dt>

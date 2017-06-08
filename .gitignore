@@ -17,3 +17,6 @@
 !/log/.keep
 /tmp
 /public/assets
+
+# Arquivo ERD.pdf
+erd.pdf

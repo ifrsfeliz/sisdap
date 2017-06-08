@@ -12,18 +12,18 @@
   <dt>Quantidade:</dt>
   <dd><%= @stockroom_entry.quantidade %></dd>
   <dt>Valor Unitário:</dt>
-  <dd><%= humanized_money_with_symbol @stockroom_entry.valor_unitario %>
+  <dd><%= number_to_currency @stockroom_entry.valor_unitario %>
   <dt>Valor Total:</dt>
-  <dd><%= humanized_money_with_symbol @stockroom_entry.valor_unitario * @stockroom_entry.quantidade %></dd>
+  <dd><%= number_to_currency @stockroom_entry.valor_unitario * @stockroom_entry.quantidade %></dd>
   <dt>Justificativa:</dt>
   <dd><%= @stockroom_entry.justificativa %></dd>
   <dt>Criada em:</dt>
-  <dd><%= l @stockroom_entry.created_at, format: :short %></dd>
+  <dd><%= l @stockroom_entry.created_at, format: :medium_long_b %></dd>
   <hr/ >
   <dt>Aprovada?</dt>
   <dd><%= (@stockroom_entry.aprovada?) ? 'Sim' : 'Não' %>
   <dt>Aprovada em:</dt>
-  <dd><%= l(@stockroom_entry.aprovada_em, format: :short) if @stockroom_entry.aprovada_em.present? %></dd>
+  <dd><%= l(@stockroom_entry.aprovada_em, format: :medium_long_b) if @stockroom_entry.aprovada_em.present? %></dd>
 </dl>
 
 <hr />

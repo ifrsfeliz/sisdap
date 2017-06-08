@@ -202,5 +202,8 @@ pt-BR:
     formats:
       default: ! '%a, %d de %B de %Y, %H:%M:%S %z'
       long: ! '%d de %B de %Y, %H:%M'
+      medium: ! '%d de %B de %Y'
+      medium_long: ! '%d/%m/%y às %H:%M'
+      medium_long_b: ! '%d de %B de %Y às %H:%M'
       short: ! '%d de %B, %H:%M'
     pm: ''

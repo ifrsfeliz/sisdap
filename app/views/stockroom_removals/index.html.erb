@@ -28,7 +28,7 @@
   <%= content_tag_for(:tr, @stockroom_removals) do |stockroom_removal| %>
     <td><%= stockroom_removal.id %></td>
     <td><%= stockroom_removal.user.try(:full_name) %></td>
-    <td><%= l(stockroom_removal.created_at, format: :short) %></td>
+    <td><%= l(stockroom_removal.created_at, format: :long) %></td>
     <td><%= stockroom_removal.stockroom_removal_items.count %>
     <td>
       <%= link_to 'Mostrar', stockroom_removal_path(stockroom_removal), class: 'btn btn-xs btn-info' %>

@@ -22,4 +22,5 @@ if user
   user.admin_authorization = true
   user.save
   user.roles << Role.find_by_name('admin')
+  user.confirm!
 end

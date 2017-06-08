@@ -20,9 +20,9 @@
       <td><%= stockroom_entry.numero_empenho %></td>
       <td><%= stockroom_entry.numero_processo %></td>
       <td><%= stockroom_entry.quantidade %></td>
-      <td><%= humanized_money_with_symbol stockroom_entry.valor_unitario %></td>
+      <td><%= number_to_currency stockroom_entry.valor_unitario %></td>
       <td><%= h truncate(stockroom_entry.justificativa, :length => 80) %></td>
-      <td><%= l stockroom_entry.created_at, format: :short %></td>
+      <td><%= l stockroom_entry.created_at, format: :medium_long %></td>
       <td>
         <%= link_to 'Mostrar', stockroom_entry_path(stockroom_entry), class: 'btn btn-xs btn-info' %>
         <% if !stockroom_entry.aprovada? %>
